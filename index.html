@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>التوحيد والحرية – التربية الإسلامية – الثانية بكالوريا</title>
+<!-- الخطوط اختيارية: إن لم يتوفر الاتصال بالإنترنت يستعمل المتصفح خطوط النظام العربية تلقائيًا -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e7; --bg2:#efe7d6; --card:#ffffff; --text:#1c2b29; --muted:#5b6b68;
+  --primary:#0f5c4d; --primary2:#157a65; --accent:#c49a3a; --accent-soft:#f6ead0;
+  --ok:#1b8a52; --bad:#c0392b; --line:#e0d7c3; --shadow:0 6px 22px rgba(15,60,50,.10);
+  --hero1:#0c4a3e; --hero2:#16745f;
+}
+[data-theme="dark"]{
+  --bg:#0e1a19; --bg2:#13231f; --card:#172826; --text:#e6eeec; --muted:#9db3ae;
+  --primary:#3fb59b; --primary2:#52c7ad; --accent:#e0b95a; --accent-soft:#2a2a1c;
+  --ok:#4cc88a; --bad:#ef7a6b; --line:#26403b; --shadow:0 6px 22px rgba(0,0,0,.4);
+  --hero1:#0b2b26; --hero2:#134b3f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Cairo','Segoe UI',Tahoma,'Noto Naskh Arabic',system-ui,sans-serif;background:var(--bg);color:var(--text);
+  display:flex;flex-direction:column;height:100dvh;overflow:hidden;font-size:18px;line-height:1.8;transition:background .3s,color .3s}
+button{font-family:inherit;cursor:pointer}
+
+/* ---------- الشريط العلوي ---------- */
+.topbar{display:flex;align-items:center;gap:10px;padding:8px 16px;background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--shadow);z-index:20}
+.brand{font-weight:800;color:var(--primary);font-size:1.05rem;white-space:nowrap}
+.brand small{display:block;font-weight:600;color:var(--muted);font-size:.72rem;line-height:1.2}
+.nav-chips{flex:1;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 4px}
+.nav-chips::-webkit-scrollbar{display:none}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--text);padding:4px 14px;border-radius:999px;font-size:.85rem;white-space:nowrap;transition:.2s}
+.chip:hover{border-color:var(--primary)}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:1.1rem;flex:none}
+.icon-btn:hover{border-color:var(--primary)}
+
+/* ---------- المسرح والشرائح ---------- */
+.stage{flex:1;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;overflow-y:auto;padding:26px 22px 40px;opacity:0;visibility:hidden;transform:translateX(-28px);
+  transition:opacity .45s ease,transform .45s ease,visibility .45s;background:var(--bg)}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.wrap{max-width:1100px;margin:0 auto}
+.slide.active .anim{animation:up .55s both}
+.slide.active .anim:nth-child(2){animation-delay:.06s}
+.slide.active .anim:nth-child(3){animation-delay:.12s}
+.slide.active .anim:nth-child(4){animation-delay:.18s}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+h1,h2,h3{line-height:1.5}
+.slide-title{font-size:clamp(1.6rem,3.2vw,2.3rem);color:var(--primary);font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.slide-title .ico{font-size:1.9rem}
+.slide-sub{color:var(--muted);margin-bottom:18px}
+.divider{height:4px;width:90px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:4px;margin:6px 0 20px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.grid.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow)}
+.card h3{color:var(--primary);font-size:1.1rem;margin-bottom:6px}
+.card p,.card li{font-size:1rem}
+.card .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;margin-bottom:8px}
+.say{background:var(--accent-soft);border-right:5px solid var(--accent);border-radius:12px;padding:12px 16px;margin:16px 0;font-size:1rem}
+.say b{color:var(--primary)}
+.big-idea{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;border-radius:20px;padding:20px 24px;font-size:1.2rem;font-weight:700;box-shadow:var(--shadow);margin:16px 0}
+.big-idea.light{background:var(--card);color:var(--text);border:2px dashed var(--accent)}
+.quote{font-size:1.3rem;font-weight:700;text-align:center;padding:24px;background:var(--card);border-radius:20px;border:2px solid var(--accent);box-shadow:var(--shadow)}
+.tag{display:inline-block;background:var(--accent-soft);color:var(--primary);border-radius:999px;padding:2px 12px;font-size:.82rem;font-weight:700;margin-left:6px}
+ul.clean{list-style:none}
+ul.clean li{padding:4px 0 4px 0}
+ul.clean li::before{content:"◆";color:var(--accent);margin-left:8px;font-size:.7rem}
+ol.qs{padding-right:22px}
+ol.qs li{margin-bottom:8px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;border:0;border-radius:12px;padding:10px 20px;font-size:1rem;font-weight:700;transition:.2s;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.btn:hover{transform:translateY(-2px);background:var(--primary2)}
+.btn.ghost{background:transparent;color:var(--primary);border:2px solid var(--primary);box-shadow:none}
+.btn.small{padding:6px 14px;font-size:.9rem}
+.reveal{display:none;margin-top:12px;background:var(--bg2);border-right:5px solid var(--primary);border-radius:12px;padding:12px 16px}
+.reveal.show{display:block;animation:up .4s both}
+.reveal b{color:var(--primary)}
+
+/* ---------- الغلاف ---------- */
+.cover{background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.10) 0 120px,transparent 121px),
+  radial-gradient(circle at 85% 85%,rgba(196,154,58,.25) 0 160px,transparent 161px),
+  linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;display:grid;place-items:center;text-align:center}
+.cover .inner{max-width:860px}
+.bismillah{font-family:'Amiri Quran','Amiri','Traditional Arabic',serif;font-size:1.8rem;color:#f3d98b;margin-bottom:8px}
+.cover h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;margin:6px 0}
+.cover .lvl{font-size:1.3rem;opacity:.92}
+.cover .lesson{display:inline-block;margin:18px 0;padding:14px 30px;border-radius:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(4px)}
+.cover .lesson div{font-size:1rem;opacity:.85}
+.cover .lesson strong{font-size:clamp(1.6rem,4vw,2.4rem);color:#f3d98b}
+.cover .motto{font-size:1.15rem;font-style:normal;opacity:.95;margin-bottom:22px}
+.fields{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.field{background:rgba(255,255,255,.12);border-radius:12px;padding:8px 16px;font-size:.98rem;min-width:200px}
+.field span[contenteditable]{display:inline-block;min-width:110px;border-bottom:2px dotted rgba(255,255,255,.7);outline:none;color:#fff3c9;padding:0 4px}
+.cover-hint{margin-top:18px;font-size:.85rem;opacity:.75}
+
+/* ---------- النصوص الشرعية ---------- */
+.ayah-card{background:var(--card);border:2px solid var(--accent);border-radius:22px;padding:22px 26px;text-align:center;box-shadow:var(--shadow);margin-bottom:16px;position:relative}
+.ayah-card::before{content:"﴿";position:absolute;top:2px;right:16px;font-size:2.4rem;color:var(--accent);opacity:.6}
+.ayah-card::after{content:"﴾";position:absolute;bottom:-6px;left:16px;font-size:2.4rem;color:var(--accent);opacity:.6}
+.ayah{font-family:'Amiri Quran','Amiri','Traditional Arabic','Scheherazade New',serif;font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:2.3;color:var(--text)}
+.ref{color:var(--primary);font-weight:700;margin-top:6px;font-size:1rem}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{border:2px solid var(--primary);background:transparent;color:var(--primary);padding:8px 20px;border-radius:12px;font-weight:700;font-size:1rem}
+.tab.active{background:var(--primary);color:#fff}
+.tabpane{display:none}
+.tabpane.active{display:block;animation:up .4s both}
+.vocab{width:100%;border-collapse:collapse;font-size:1rem}
+.vocab td{padding:6px 8px;border-bottom:1px dashed var(--line);vertical-align:top}
+.vocab td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;width:1%}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:12px}
+.qa .q{font-weight:700}
+.qa .q::before{content:"❓ "}
+
+/* ---------- المخطط ---------- */
+.flow{display:flex;flex-direction:column;align-items:center;gap:0;margin:10px 0}
+.flow-step{width:min(560px,100%);text-align:center;background:var(--card);border:2px solid var(--primary);color:var(--text);border-radius:16px;padding:12px 18px;font-weight:700;box-shadow:var(--shadow);opacity:0;max-height:0;overflow:hidden;padding-top:0;padding-bottom:0;border-width:0;transition:all .5s}
+.flow-step.show{opacity:1;max-height:140px;padding:12px 18px;border-width:2px}
+.flow-step.last{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
+.flow-step small{display:block;font-weight:400;color:var(--muted);font-size:.85rem}
+.flow-step.last small{color:#e8f5f1}
+.flow-arrow{font-size:1.6rem;color:var(--accent);height:0;opacity:0;overflow:hidden;transition:all .5s;line-height:1}
+.flow-arrow.show{height:30px;opacity:1}
+.chain{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.chain .node{background:var(--primary);color:#fff;border-radius:14px;padding:10px 20px;font-weight:800}
+.chain .arr{align-self:center;color:var(--accent);font-size:1.5rem;font-weight:800}
+
+/* ---------- الجدول ---------- */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+.cmp th{padding:14px;font-size:1.15rem;color:#fff}
+.cmp th.ok{background:var(--ok)} .cmp th.no{background:var(--bad)}
+.cmp td{padding:12px 16px;border-top:1px solid var(--line);vertical-align:top;width:50%}
+
+/* ---------- الاختبار ---------- */
+.quiz-box{background:var(--card);border-radius:20px;padding:22px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.quiz-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.95rem;margin-bottom:8px}
+.qbar{height:8px;background:var(--bg2);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.qbar i{display:block;height:100%;background:var(--accent);width:0;transition:width .4s}
+.qtext{font-size:1.25rem;font-weight:700;margin-bottom:14px}
+.opt{display:block;width:100%;text-align:right;background:var(--bg);border:2px solid var(--line);color:var(--text);padding:11px 16px;border-radius:12px;margin-bottom:10px;font-size:1.02rem;transition:.2s}
+.opt:hover:not(:disabled){border-color:var(--primary)}
+.opt.right{border-color:var(--ok);background:rgba(27,138,82,.14)}
+.opt.wrong{border-color:var(--bad);background:rgba(192,57,43,.12)}
+.feedback{margin-top:8px;padding:12px 16px;border-radius:12px;display:none}
+.feedback.show{display:block;animation:up .35s both}
+.feedback.good{background:rgba(27,138,82,.14);border-right:5px solid var(--ok)}
+.feedback.bad{background:rgba(192,57,43,.12);border-right:5px solid var(--bad)}
+.score-big{font-size:3rem;font-weight:800;color:var(--primary);text-align:center}
+
+/* ---------- الخريطة الذهنية ---------- */
+.mm-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:6px}
+.mm-wrap svg{min-width:760px;width:100%;height:auto;display:block;direction:rtl}
+.mm-wrap text{font-family:'Cairo','Segoe UI',Tahoma,sans-serif;text-anchor:middle;dominant-baseline:central}
+.mm-node{transition:transform .25s;transform-box:fill-box;transform-origin:center}
+.mm-node:hover{transform:scale(1.07)}
+.mm-line{stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600}
+.slide.active .mm-line{animation:draw 1.2s .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* ---------- المصطلحات ---------- */
+.terms{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.term{background:var(--card);border:2px solid var(--line);color:var(--text);padding:10px 22px;border-radius:14px;font-weight:700;font-size:1.05rem;transition:.2s}
+.term:hover{border-color:var(--primary)}
+.term.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.term-panel{background:var(--card);border:2px solid var(--accent);border-radius:20px;padding:22px;box-shadow:var(--shadow);min-height:150px}
+.term-panel h3{font-size:1.5rem;color:var(--primary)}
+
+/* ---------- الخطاطة ---------- */
+.sch-root{width:min(420px,100%);margin:0 auto;text-align:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;border-radius:20px;padding:12px 20px;font-size:1.5rem;font-weight:800;box-shadow:var(--shadow);position:relative}
+.sch-stem{width:4px;height:26px;background:var(--accent);margin:0 auto;border-radius:4px}
+.sch-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.sch-card{background:var(--card);border:2px solid var(--c,var(--primary));border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.sch-head{background:var(--c,var(--primary));color:#fff;padding:9px 16px;font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:10px}
+.sch-head b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.25)}
+.sch-body{padding:10px 16px 14px;font-size:.96rem;line-height:1.75}
+.sch-body h4{color:var(--c,var(--primary));font-size:.95rem;margin:8px 0 2px}
+.sch-body ul{list-style:none;padding:0}
+.sch-body li{padding:1px 0}
+.sch-body li::before{content:"◂";color:var(--c,var(--accent));margin-left:7px}
+.sch-body .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sch-body .pair>div{background:var(--bg2);border-radius:10px;padding:6px 10px}
+.sch-flow{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-weight:700}
+.sch-flow span.s{background:var(--bg2);border-radius:8px;padding:2px 10px}
+.sch-flow span.a{color:var(--accent)}
+
+/* ---------- التذييل ---------- */
+.footer{display:flex;align-items:center;gap:12px;padding:8px 16px 10px;background:var(--card);border-top:1px solid var(--line);z-index:20}
+.footer .mid{flex:1;display:flex;flex-direction:column;gap:4px;align-items:center}
+.counter{font-size:.85rem;color:var(--muted)}
+.progress{width:100%;height:8px;border-radius:8px;background:var(--bg2);overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(270deg,var(--accent),var(--primary));transition:width .45s}
+.navbtn{background:var(--primary);color:#fff;border:0;border-radius:12px;padding:9px 20px;font-weight:700;font-size:1rem;flex:none}
+.navbtn:disabled{opacity:.35;cursor:not-allowed}
+.navbtn:not(:disabled):hover{background:var(--primary2)}
+
+@media (max-width:640px){
+  body{font-size:16.5px}
+  .brand small{display:none}
+  .slide{padding:18px 14px 36px}
+  .navbtn{padding:9px 12px}
+  .navbtn span{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">التوحيد والحرية<small>التربية الإسلامية · الثانية بكالوريا</small></div>
+  <nav class="nav-chips" id="navChips" aria-label="محاور الدرس"></nav>
+  <button class="icon-btn" id="fsBtn" title="ملء الشاشة" aria-label="ملء الشاشة">⛶</button>
+  <button class="icon-btn" id="themeBtn" title="الوضع الليلي / النهاري" aria-label="تبديل الوضع">🌙</button>
+</header>
+
+<main class="stage" id="stage">
+
+<!-- ======================= 1) الغلاف ======================= -->
+<section class="slide cover" data-axis="0">
+  <div class="inner">
+    <div class="bismillah anim">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1 class="anim">مادة التربية الإسلامية</h1>
+    <div class="lvl anim">الثانية بكالوريا</div>
+    <div class="lesson anim">
+      <div>المدخل: التزكية</div>
+      <div>الدرس:</div>
+      <strong>التوحيد والحرية</strong>
+    </div>
+    <p class="motto anim">«حين يخلص القلب لله وحده، تسقط عنه كل القيود الزائفة، ويبدأ الإنسان رحلة الحرية الحقيقية.»</p>
+    <div class="cover-hint anim">استعمل الأسهم ← → للتنقل بين الشرائح</div>
+  </div>
+</section>
+
+<!-- ======================= 2) الأهداف ======================= -->
+<section class="slide" data-axis="0">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🎯</span>أهداف الدرس</h2>
+    <div class="divider"></div>
+    <p class="slide-sub anim">💬 في نهاية هذا الدرس، سأكون – بإذن الله – قادرًا على:</p>
+    <div class="grid" id="objectives"></div>
+  </div>
+</section>
+
+<!-- ======================= 3) وضعية الانطلاق ======================= -->
+<section class="slide" data-axis="0">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🧩</span>وضعية الانطلاق</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 <b>لاحظوا</b> هذا الموقف، ثم فكروا فيه معي بهدوء.</div>
+    <div class="quote anim">
+      🗣️ تلميذ يقول: «أنا حر، ومن حقي أن أفعل ما أريد، ولا يحق لأي أحد أن يمنعني.»
+    </div>
+    <div class="card anim" style="margin-top:16px">
+      <h3>أسئلة للنقاش:</h3>
+      <ol class="qs">
+        <li>هل الحرية تعني أن يفعل الإنسان كل ما يريد؟</li>
+        <li>هل يمكن للإنسان أن يكون حرًا وهو خاضع لشهواته؟</li>
+        <li>هل التوحيد علاقة بين الإنسان وربه فقط؟</li>
+        <li>كيف يمكن للتوحيد أن يحرر الإنسان؟</li>
+      </ol>
+      <div class="say" style="margin-bottom:0">💬 من منكم يستطيع أن يجيب؟ اطلبوا الكلمة وعللوا إجاباتكم.</div>
+      <button class="btn reveal-btn" style="margin-top:14px" data-show="🤔 فكر قبل أن تتابع" data-hide="إخفاء التمهيد">🤔 فكر قبل أن تتابع</button>
+      <div class="reveal">
+        <p><b>لنستخلص معًا:</b> التلميذ في الموقف يخلط بين <b>الحرية</b> و<b>التحرر من كل ضابط</b>. لكن هل من يفعل كل ما تشتهيه نفسه يملك قراره فعلًا؟ أم أن شهوته هي التي تقوده؟</p>
+        <p>إذن: قد يكون الإنسان «غير ممنوع» من أحد، ومع ذلك يكون <b>أسيرًا لهواه</b>. فمن هو الحر حقًا؟ وما علاقة <b>التوحيد</b> بالجواب؟ هذا ما سنكتشفه في درسنا اليوم.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 4) تمهيد ======================= -->
+<section class="slide" data-axis="0">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🔗</span>تمهيد: ما علاقة التوحيد بالحرية؟</h2>
+    <div class="divider"></div>
+    <div class="big-idea anim">إذا كان الإنسان يؤمن بأن الله وحده هو المستحق للعبادة والطاعة المطلقة، فإنه لا يجعل نفسه عبدًا للبشر، ولا للأهواء، ولا للمظاهر، ولا للمال.</div>
+    <div class="say anim">💬 <b>لنربط هذا بحياتكم اليومية</b> – فكروا في هذه الأمثلة:</div>
+    <div class="grid">
+      <div class="card anim"><h3>📱 الهاتف</h3><p>من لا يستطيع أن يتركه ساعة واحدة، ويشعر بالقلق إن لم يفتح التطبيقات… من يملك من؟ هو يملك الهاتف، أم الهاتف يملكه؟</p></div>
+      <div class="card anim"><h3>👥 الأصدقاء</h3><p>تلميذ يقلد أصدقاءه في كل شيء خوفًا من أن يقولوا عنه «متخلف»، حتى فيما لا يقتنع به.</p></div>
+      <div class="card anim"><h3>👟 المظاهر</h3><p>شخص لا يرتاح إلا إذا لبس ماركة معينة ليُعجب الناس، وإن كلفه ذلك فوق طاقته.</p></div>
+      <div class="card anim"><h3>💰 المال</h3><p>من يترك الصدق والأمانة من أجل ربح سريع، فيصبح المال هو الذي يوجه قراراته.</p></div>
+    </div>
+    <div class="say anim">💬 <b>ماذا نستنتج؟</b> هؤلاء لا يعبدون أصنامًا من حجر، لكنهم قد يكونون خاضعين لما لا يستحق الخضوع. والتوحيد يضع الأمور في نصابها: <b>الطاعة المطلقة لله وحده</b>، وكل ما سواه لا يُعبد ولا يُطاع طاعة مطلقة.</div>
+  </div>
+</section>
+
+<!-- ======================= 5) مفهوم التوحيد (1) ======================= -->
+<section class="slide" data-axis="1">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">☝️</span>أولًا: مفهوم التوحيد</h2>
+    <div class="divider"></div>
+    <div class="grid g2">
+      <div class="card anim"><span class="tag">لغةً</span>
+        <p style="margin-top:8px">التوحيد مصدر الفعل «وَحَّدَ» أي: جعل الشيء <b>واحدًا</b>، ونسب إليه الوحدانية. فنقول: وحَّد الله أي اعتقد أنه واحد لا شريك له.</p></div>
+      <div class="card anim"><span class="tag">اصطلاحًا</span>
+        <p style="margin-top:8px">هو <b>إفراد الله تعالى بالعبادة والطاعة المطلقة</b>، واعتقاد أنه الواحد الأحد في ربوبيته وألوهيته وأسمائه وصفاته، لا شريك له ولا ند.</p></div>
+    </div>
+    <div class="card anim" style="margin-top:16px">
+      <h3>معنى «توحيد الله»</h3>
+      <ul class="clean">
+        <li>أن أعتقد أن الله هو الخالق الرازق المدبر وحده.</li>
+        <li>أن أتوجه إليه وحده بالعبادة: بالدعاء والخوف والرجاء والتوكل.</li>
+        <li>أن أجعل طاعته هي <b>المرجع الأعلى</b> في حياتي، فلا أطيع مخلوقًا في معصية الخالق.</li>
+      </ul>
+    </div>
+    <div class="big-idea anim">بعبارة بسيطة: التوحيد يعني أن أُقر بأن الله وحده هو المستحق للعبادة والخضوع والطاعة المطلقة.</div>
+    <div class="say anim">💬 <b>لاحظوا</b> الكلمة المفتاحية: «<b>المطلقة</b>». نحن نطيع الوالدين والأستاذ والقانون، لكن طاعتهم <b>مقيدة</b> بعدم المعصية، أما طاعة الله فهي الأصل الذي ترجع إليه كل طاعة.</div>
+  </div>
+</section>
+
+<!-- ======================= 6) مفهوم التوحيد (2) ======================= -->
+<section class="slide" data-axis="1">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🧭</span>مظاهر التوحيد وأمثلته</h2>
+    <div class="divider"></div>
+    <p class="slide-sub anim">يقسم العلماء التوحيد تقسيمًا تعليميًا لتسهيل الفهم، وهذه أقسامه:</p>
+    <div class="grid">
+      <div class="card anim"><span class="num">1</span><h3>توحيد الربوبية</h3><p>الاعتقاد بأن الله وحده الخالق والرازق والمدبر لشؤون الكون.</p></div>
+      <div class="card anim"><span class="num">2</span><h3>توحيد الألوهية</h3><p>إفراد الله وحده بالعبادة والطاعة المطلقة والتعظيم. <b>وهو الذي يرتبط ارتباطًا مباشرًا بموضوع الحرية.</b></p></div>
+      <div class="card anim"><span class="num">3</span><h3>توحيد الأسماء والصفات</h3><p>الإيمان بما وصف الله به نفسه من الأسماء الحسنى والصفات العليا، دون تشبيه ولا تعطيل.</p></div>
+    </div>
+    <div class="say anim">💬 <b>ملاحظة للأستاذ:</b> يُركَّز في هذا الدرس على توحيد الألوهية (العبادة والخضوع) لأنه الأقرب إلى قضية الحرية؛ ويُراعى في عرض الأقسام ما ورد في الكتاب المدرسي المعتمد.</div>
+    <div class="card anim">
+      <h3>أمثلة تطبيقية على التوحيد في الحياة:</h3>
+      <div class="grid">
+        <div><b>🕌 عبادة الله وحده:</b><br>أصلي وأدعو وأتوكل على الله وحده، ولا أطلب النفع والضر من غيره.</div>
+        <div><b>🚫 عدم الخضوع للبشر في معصية الله:</b><br>لا أغش ولا أكذب لأن صديقًا أو مسؤولًا طلب مني ذلك.</div>
+        <div><b>⚖️ عدم تأليه المال أو الشهرة أو الشهوة:</b><br>لا أجعلها غاية مطلقة تتحكم في قراراتي وقيمي.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 7) مفهوم الحرية (1) ======================= -->
+<section class="slide" data-axis="1">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🕊️</span>ثانيًا: مفهوم الحرية</h2>
+    <div class="divider"></div>
+    <div class="grid g2">
+      <div class="card anim"><span class="tag">لغةً</span>
+        <p style="margin-top:8px">الحرية من «الحُرّ»، وهو نقيض العبد؛ ومعناها: الخلوص من الرِّقّ والقيد ومن كل ما يشوب الشيء. ويقال: «حرّ» أي خالص.</p></div>
+      <div class="card anim"><span class="tag">اصطلاحًا</span>
+        <p style="margin-top:8px">قدرة الإنسان على <b>الاختيار والتصرف بإرادته</b> دون إكراه ولا استبداد، في إطار ما يقره الحق والشرع، وبما لا يعتدي على حقوق الآخرين.</p></div>
+    </div>
+    <div class="card anim" style="margin-top:16px">
+      <h3>معنى حرية الإنسان في الإسلام</h3>
+      <p>كرّم الإسلام الإنسان وجعله مختارًا، فأقر له:</p>
+      <ul class="clean">
+        <li><b>حرية الاعتقاد:</b> لا إكراه في الدين، فالإيمان يقوم على القناعة.</li>
+        <li><b>حرية التفكير والتعبير:</b> فالإسلام يدعو إلى التأمل والنظر وإبداء الرأي بأدب.</li>
+        <li><b>حرية التصرف:</b> في العمل والتملك والزواج والتنقل… ضمن الضوابط المشروعة.</li>
+      </ul>
+      <p>لكنها حرية <b>مصحوبة بالمسؤولية</b>، لا حرية بلا حساب.</p>
+    </div>
+    <div class="say anim">💬 <b>سؤال للقسم:</b> هل الحرية تعني غياب جميع القيود؟
+      <br><button class="btn small reveal-btn" style="margin-top:8px" data-show="إظهار الإجابة" data-hide="إخفاء الإجابة">إظهار الإجابة</button>
+      <div class="reveal"><b>الجواب:</b> لا. حتى في أكثر المجتمعات حرية توجد قيود: إشارة المرور، وقوانين المدرسة، وحقوق الجار. هذه القيود لا تلغي الحرية بل <b>تحميها</b>؛ إذ لو أطلقنا الجميع بلا حدود لاعتدى القوي على الضعيف، وضاعت حرية الجميع.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 8) مفهوم الحرية (2) ======================= -->
+<section class="slide" data-axis="1">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">⚖️</span>ما الحرية؟ وما ليست الحرية؟</h2>
+    <div class="divider"></div>
+    <div class="grid">
+      <div class="card anim" style="border-color:var(--bad)"><h3>❌ الحرية ≠ الفوضى</h3><p>الفوضى غياب النظام وتعدٍّ على حقوق الآخرين.</p><p><b>مثال مدرسي:</b> تلميذ يصيح داخل القسم ويقول «أنا حر في الكلام»، فيحرم زملاءه من حقهم في الاستماع والفهم.</p></div>
+      <div class="card anim" style="border-color:var(--bad)"><h3>❌ الحرية ≠ فعل كل ما أشاء</h3><p>فالرغبة وحدها ليست معيارًا للصواب، فقد أرغب فيما يضرني أو يضر غيري.</p><p><b>مثال حياتي:</b> من يشتهي السرعة المفرطة في الطريق، فليس حرًا إن عرّض أرواح الناس للخطر.</p></div>
+      <div class="card anim" style="border-color:var(--ok)"><h3>✅ الحرية = اختيار مسؤول</h3><p>اختيار واعٍ، في إطار الحق والشرع، دون اعتداء على حقوق الآخرين، مع تحمل نتائجه.</p><p><b>مثال:</b> تلميذ يختار شعبته ومنهج مراجعته بحرية، ويتحمل نتيجة اختياره بجدّ.</p></div>
+    </div>
+    <div class="chain anim"><div class="node">الحرية ≠ الفوضى</div><div class="arr">|</div><div class="node">الحرية ≠ فعل كل ما أشاء</div><div class="arr">=</div><div class="node" style="background:var(--ok)">اختيار مسؤول في إطار الحق</div></div>
+    <div class="say anim">💬 <b>إذن…</b> الحرية الحقيقية لا تعني أن أتخلص من كل ضابط، بل أن أكون <b>أنا</b> صاحب القرار، لا شهوتي ولا ضغط غيري. وهنا يظهر دور التوحيد.</div>
+  </div>
+</section>
+
+<!-- نصوص شرعية: تُولَّد بالجافاسكربت -->
+<div id="textsAnchor"></div>
+
+<!-- ======================= العلاقة بين التوحيد والحرية (1) ======================= -->
+<section class="slide" data-axis="3">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🌟</span>التوحيد أساس الحرية</h2>
+    <div class="divider"></div>
+    <div class="big-idea anim">من وحّد الله وحده، لم يبق لأحد غيره عليه سلطان مطلق؛ فيتحرر من كل عبودية تُذل الإنسان.</div>
+    <div class="say anim">💬 <b>لنربط هذا بما سبق:</b> رأينا أن الحرية اختيار مسؤول، وأن التوحيد إفراد لله بالطاعة المطلقة. فكيف يلتقيان؟ تعالوا نكتشف ستة وجوه لهذه العلاقة.</div>
+    <div class="grid" id="relCards"></div>
+  </div>
+</section>
+
+<!-- ======================= المخطط البصري ======================= -->
+<section class="slide" data-axis="3">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🧬</span>مخطط: من التوحيد إلى الحرية الحقيقية</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 <b>لاحظوا</b> التسلسل؛ سنكشف الخطوات واحدة واحدة، وفي كل خطوة سأطلب منكم أن تتوقعوا ما التالي.</div>
+    <div class="flow" id="flow"></div>
+    <div style="text-align:center;margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn" id="flowNext">الخطوة التالية ⬇</button>
+      <button class="btn ghost" id="flowAll">إظهار الكل</button>
+      <button class="btn ghost" id="flowReset">إعادة</button>
+    </div>
+    <div class="say" style="margin-top:18px">💬 <b>ماذا نستنتج؟</b> التوحيد لا يقيد الإنسان، بل <b>ينقله من تعدد الأسياد إلى سيد واحد</b> هو الله، وهذا الخضوع لله وحده هو الذي يرفع الإنسان فوق كل خضوع مذل.</div>
+  </div>
+</section>
+
+<!-- ======================= مظاهر العبودية المعاصرة ======================= -->
+<section class="slide" data-axis="4">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">⛓️</span>مظاهر العبودية المعاصرة</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 <b>فكروا معي:</b> العبودية ليست فقط أن يسجد إنسان لصنم. قد تظهر في صور خفية نعيشها في عصرنا. والهدف هنا ليس الحكم على الأشخاص، بل <b>فهم الفكرة وتجنبها</b> والتحرر منها.</div>
+    <div class="grid" id="slavCards"></div>
+    <div class="card anim" style="margin-top:16px">
+      <h3>📖 نصان نبويان للاستئناس</h3>
+      <p>«لَا طَاعَةَ فِي مَعْصِيَةِ اللَّهِ، إِنَّمَا الطَّاعَةُ فِي الْمَعْرُوفِ» <span class="tag">متفق عليه</span></p>
+      <p>«تَعِسَ عَبْدُ الدِّينَارِ وَعَبْدُ الدِّرْهَمِ وَعَبْدُ الْخَمِيصَةِ، إِنْ أُعْطِيَ رَضِيَ، وَإِنْ لَمْ يُعْطَ سَخِطَ» <span class="tag">رواه البخاري</span></p>
+      <p class="slide-sub" style="margin:0">يستحسن مطابقة لفظهما مع نص الكتاب المدرسي المعتمد.</p>
+    </div>
+    <div class="card anim" style="margin-top:16px;border-color:var(--accent)">
+      <h3>🤔 وضعية للنقاش</h3>
+      <p>«تلميذ يفعل شيئًا لا يريده، فقط لأن أصدقاءه طلبوا منه ذلك.»</p>
+      <p><b>هل هو حر فعلًا؟ ولماذا؟</b></p>
+      <button class="btn small reveal-btn" data-show="إظهار الإجابة" data-hide="إخفاء الإجابة">إظهار الإجابة</button>
+      <div class="reveal"><b>الجواب:</b> ليس حرًا بالمعنى الحقيقي؛ لأنه فقد <b>إرادته</b>، فقراره صادر عن ضغط الآخرين لا عن قناعته. قد لا يمنعه أحد جسديًا، لكنه أسير للخوف من فقدان رضاهم. والتوحيد يمنحه قوة داخلية ليقول «لا» لما يخالف قيمه، لأنه يعلم أن رضا الله مقدَّم على رضا الناس.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= الحرية مسؤولية ======================= -->
+<section class="slide" data-axis="4">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🧠</span>الحرية مسؤولية</h2>
+    <div class="divider"></div>
+    <div class="big-idea anim">الإنسان حر في اختياراته، لكنه مسؤول عن نتائج هذه الاختيارات.</div>
+    <div class="chain anim">
+      <div class="node">الحرية</div><div class="arr">←</div>
+      <div class="node">الاختيار</div><div class="arr">←</div>
+      <div class="node">المسؤولية</div><div class="arr">←</div>
+      <div class="node" style="background:var(--accent);color:#1c2b29">المحاسبة</div>
+    </div>
+    <div class="say anim">💬 <b>إذن…</b> لا معنى لحرية بلا مسؤولية. تخيلوا مدرسة كل تلميذ فيها يفعل ما يشاء بلا حساب: أين ستذهب حقوق الجميع؟ وقد قال الله تعالى: ﴿كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ﴾ (المدثر: 38).</div>
+    <div class="grid">
+      <div class="card anim"><h3>🗣️ حرية التعبير</h3><p>أعبر عن رأيي بحرية <b>مع احترام الآخرين</b> وكرامتهم.</p></div>
+      <div class="card anim"><h3>✅ حرية الاختيار</h3><p>أختار ما يناسبني <b>مع احترام القانون والشرع</b>.</p></div>
+      <div class="card anim"><h3>📲 وسائل التواصل</h3><p>أستعملها بحرية <b>دون إيذاء الآخرين</b> أو نشر ما يسيء إليهم.</p></div>
+      <div class="card anim"><h3>💭 إبداء الرأي</h3><p>أنتقد وأختلف <b>دون سب ولا تشهير</b>، فالنقد بالحجة لا بالإهانة.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= جدول المقارنة ======================= -->
+<section class="slide" data-axis="4">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">📊</span>الحرية المسؤولة والحرية المنفلتة</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 <b>لاحظوا</b> الفرق بين العمودين، ثم قولوا لي: أيهما نحتاجه فعلًا؟</div>
+    <table class="cmp anim">
+      <thead><tr><th class="ok">✅ الحرية المسؤولة (في الإسلام)</th><th class="no">⚠️ الحرية المنفلتة</th></tr></thead>
+      <tbody>
+        <tr><td>مرتبطة بالكرامة الإنسانية.</td><td>تجعل الرغبة معيارًا لكل شيء.</td></tr>
+        <tr><td>تحترم حقوق الآخرين.</td><td>قد تؤدي إلى الاعتداء على الآخرين.</td></tr>
+        <tr><td>مرتبطة بالمسؤولية والمحاسبة.</td><td>تهرب من المسؤولية وتبحث عن المبررات.</td></tr>
+        <tr><td>لا تعتدي على القيم والثوابت.</td><td>قد تتحدى القيم باسم «أنا حر».</td></tr>
+        <tr><td>تحقق الخير للفرد والمجتمع.</td><td>قد تجعل الإنسان عبدًا لشهواته.</td></tr>
+      </tbody>
+    </table>
+    <div class="big-idea light anim" style="margin-top:18px">المفارقة: الحرية «المنفلتة» تنتهي غالبًا بعبودية الشهوة، بينما الحرية «المنضبطة» بالتوحيد تنتهي بالتحرر الحقيقي.</div>
+  </div>
+</section>
+
+<!-- ======================= مواقف تطبيقية ======================= -->
+<section class="slide" data-axis="5">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🎭</span>مواقف تطبيقية</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 <b>فكروا في هذا الموقف…</b> اقرؤوا كل موقف، وأجيبوا شفهيًا، ثم قارنوا جوابكم بالحل.</div>
+    <div id="situations"></div>
+  </div>
+</section>
+
+<!-- ======================= Quiz ======================= -->
+<section class="slide" data-axis="5">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">📝</span>نشاط تفاعلي: اختبر فهمك</h2>
+    <div class="divider"></div>
+    <div class="quiz-box anim" id="quizBox"></div>
+  </div>
+</section>
+
+<!-- ======================= الخريطة الذهنية ======================= -->
+<section class="slide" data-axis="5">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🗺️</span>الخريطة الذهنية للدرس</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 <b>لنلخص بصريًا:</b> من منكم يستطيع أن يشرح فرعًا من هذه الخريطة بلغته؟</div>
+    <div class="mm-wrap anim" id="mindmap"></div>
+  </div>
+</section>
+
+<!-- ======================= خلاصة ======================= -->
+<section class="slide" data-axis="6">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">📌</span>خلاصة الدرس</h2>
+    <div class="divider"></div>
+    <div class="big-idea anim" style="font-size:1.3rem;line-height:2">التوحيد لا يقيّد الإنسان، بل يحرره من الخضوع لغير الله، ويمنحه الكرامة، ويجعله قادرًا على مقاومة الشهوات والضغوط، مع تحمّل مسؤولية اختياراته واحترام حقوق الآخرين.</div>
+    <div class="grid">
+      <div class="card anim"><h3>☝️ التوحيد</h3><p>إفراد الله بالعبادة والطاعة المطلقة.</p></div>
+      <div class="card anim"><h3>🕊️ الحرية</h3><p>اختيار مسؤول في إطار الحق، لا فوضى ولا انفلات.</p></div>
+      <div class="card anim"><h3>🔗 العلاقة</h3><p>التوحيد أساس الحرية؛ لأنه يحرر من عبودية البشر والأهواء والمال والمظاهر.</p></div>
+      <div class="card anim"><h3>⚖️ المسؤولية</h3><p>الحرية تقتضي المحاسبة، واحترام حقوق الآخرين.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= مصطلحات ======================= -->
+<section class="slide" data-axis="6">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">📚</span>مصطلحات أساسية</h2>
+    <div class="divider"></div>
+    <p class="slide-sub anim">اضغط على المصطلح لتظهر معانيه ومثاله.</p>
+    <div class="terms" id="terms"></div>
+    <div class="term-panel anim" id="termPanel"><p style="color:var(--muted)">👆 اختر مصطلحًا من الأعلى.</p></div>
+  </div>
+</section>
+
+<!-- ======================= أسئلة التقويم ======================= -->
+<section class="slide" data-axis="6">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">✍️</span>أسئلة التقويم</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 أجيبوا في كراساتكم أولًا، ثم اضغطوا على «نموذج إجابة» للمقارنة.</div>
+    <div id="assess"></div>
+  </div>
+</section>
+
+<!-- ======================= ماذا تعلمنا اليوم ======================= -->
+<section class="slide" data-axis="6">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🌱</span>ماذا تعلمنا اليوم؟</h2>
+    <div class="divider"></div>
+    <div class="grid">
+      <div class="card anim"><span class="num">1</span><p>التوحيد هو إفراد الله بالعبادة والطاعة المطلقة.</p></div>
+      <div class="card anim"><span class="num">2</span><p>الحرية اختيار مسؤول في إطار الحق، لا فوضى ولا فعل كل ما نشتهي.</p></div>
+      <div class="card anim"><span class="num">3</span><p>التوحيد يحرر الإنسان من عبودية البشر والشهوات والمال والمظاهر.</p></div>
+      <div class="card anim"><span class="num">4</span><p>العبودية قد تكون خفية: ضغط الأصدقاء، وإدمان الشاشات، والتعلق برأي الناس.</p></div>
+      <div class="card anim"><span class="num">5</span><p>الحرية مسؤولية: اختيار فمحاسبة، مع احترام حقوق الآخرين.</p></div>
+    </div>
+    <div class="quote anim" style="margin-top:22px;font-size:1.45rem;line-height:2">
+      «الإنسان الحر ليس من يفعل كل ما يريد، بل من يملك إرادته ولا يصبح عبدًا إلا لله.»
+    </div>
+    <p style="text-align:center;margin-top:16px;color:var(--muted)">شكرًا لحسن إصغائكم 🌹 — والحمد لله رب العالمين</p>
+  </div>
+</section>
+
+<!-- ======================= خطاطة الدرس ======================= -->
+<section class="slide" data-axis="6">
+  <div class="wrap">
+    <h2 class="slide-title anim"><span class="ico">🗂️</span>خطاطة الدرس</h2>
+    <div class="divider"></div>
+    <div class="say anim">💬 هذه خطاطة شاملة للدرس يمكن للتلميذ نقلها إلى كراسته؛ <b>من يستطيع أن يشرح محورًا منها بأسلوبه؟</b></div>
+    <div class="sch-root anim">التوحيد والحرية</div>
+    <div class="sch-stem"></div>
+    <div class="sch-grid">
+
+      <div class="sch-card anim" style="--c:#0f8a6d">
+        <div class="sch-head"><b>1</b>مفهوم التوحيد</div>
+        <div class="sch-body">
+          <h4>لغةً</h4><ul><li>جعل الشيء واحدًا (من «وحّد»).</li></ul>
+          <h4>اصطلاحًا</h4><ul><li>إفراد الله بالعبادة والطاعة المطلقة، وبالربوبية والأسماء والصفات.</li></ul>
+          <h4>مظاهره</h4><ul><li>توحيد الربوبية</li><li>توحيد الألوهية (العبادة) ← أهمها في الدرس</li><li>توحيد الأسماء والصفات</li></ul>
+          <h4>أمثلته</h4><ul><li>عبادة الله وحده</li><li>عدم الخضوع للبشر في معصية الله</li><li>عدم تأليه المال أو الشهرة أو الشهوة</li></ul>
+        </div>
+      </div>
+
+      <div class="sch-card anim" style="--c:#c49a3a">
+        <div class="sch-head"><b>2</b>مفهوم الحرية</div>
+        <div class="sch-body">
+          <h4>لغةً</h4><ul><li>الخلوص من الرِّق والقيد (الحُرّ نقيض العبد).</li></ul>
+          <h4>اصطلاحًا</h4><ul><li>القدرة على الاختيار والتصرف دون إكراه، في إطار الحق والشرع وعدم الاعتداء على حقوق الآخرين.</li></ul>
+          <h4>في الإسلام</h4><ul><li>حرية الاعتقاد</li><li>حرية التفكير والتعبير</li><li>حرية التصرف بضوابطها</li></ul>
+          <h4>ما ليست الحرية</h4><ul><li>ليست فوضى</li><li>ليست فعل كل ما أشاء</li></ul>
+          <div class="big-idea light" style="margin:8px 0 0;padding:8px 12px;font-size:.95rem">الحرية = اختيار مسؤول في إطار الحق</div>
+        </div>
+      </div>
+
+      <div class="sch-card anim" style="--c:#2f7fb8">
+        <div class="sch-head"><b>3</b>النصوص الشرعية</div>
+        <div class="sch-body">
+          <ul>
+            <li><b>الإخلاص 1–4:</b> وحدانية الله</li>
+            <li><b>الفاتحة 5:</b> العبادة والاستعانة لله وحده</li>
+            <li><b>الأنعام 162–163:</b> إخلاص الحياة كلها لله</li>
+            <li><b>النحل 36:</b> دعوة الرسل: عبادة الله واجتناب الطاغوت</li>
+            <li><b>البقرة 256:</b> لا إكراه في الدين، والعروة الوثقى</li>
+            <li><b>آل عمران 64:</b> لا اتخاذ البشر أربابًا</li>
+            <li><b>الجاثية 23:</b> خطر عبودية الهوى</li>
+            <li><b>الإسراء 70:</b> تكريم الإنسان</li>
+            <li><b>الإنسان 3 + المدثر 38:</b> الاختيار والمسؤولية</li>
+            <li><b>يوسف 39:</b> أأرباب متفرقون خير أم الله الواحد؟</li>
+            <li><b>الزمر 29:</b> مثل العبد لأسياد متنازعين</li>
+            <li><b>التوبة 31:</b> رفض الطاعة العمياء للبشر</li>
+            <li><b>الكافرون 1–6:</b> الثبات على التوحيد وحرية الاعتقاد</li>
+            <li><b>الشمس 7–10:</b> تزكية النفس وضبط الهوى</li>
+            <li><b>الحجرات 13:</b> المساواة والتفاضل بالتقوى</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sch-card anim" style="--c:#0c6b57">
+        <div class="sch-head"><b>4</b>العلاقة: التوحيد أساس الحرية</div>
+        <div class="sch-body">
+          <h4>التوحيد يحرر الإنسان من:</h4>
+          <ul><li>عبودية البشر</li><li>عبودية الشهوات والأهواء</li><li>الخوف المفرط من الناس</li><li>عبودية المال والمظاهر</li></ul>
+          <h4>ويمنحه:</h4>
+          <ul><li>المسؤولية عن اختياراته</li><li>كرامة الإنسان</li></ul>
+          <h4>المسار</h4>
+          <div class="sch-flow"><span class="s">التوحيد</span><span class="a">←</span><span class="s">رفض العبودية لغير الله</span><span class="a">←</span><span class="s">التحرر</span><span class="a">←</span><span class="s">الكرامة والمسؤولية</span><span class="a">←</span><span class="s">الحرية الحقيقية</span></div>
+        </div>
+      </div>
+
+      <div class="sch-card anim" style="--c:#c0504d">
+        <div class="sch-head"><b>5</b>مظاهر العبودية المعاصرة</div>
+        <div class="sch-body">
+          <ul>
+            <li>عبودية الشهوة</li><li>عبودية المال</li><li>عبودية الشهرة</li><li>عبودية الموضة والمظاهر</li>
+            <li>الخضوع لضغط الأصدقاء</li><li>الخوف المرضي من كلام الناس</li><li>التعلق المفرط بآراء الآخرين</li><li>الإدمان على وسائل التواصل</li>
+          </ul>
+          <h4>المعيار</h4><ul><li>من فقد إرادته وصار قراره بيد غيره أو بيد هواه فليس حرًا.</li></ul>
+        </div>
+      </div>
+
+      <div class="sch-card anim" style="--c:#8a5fb0">
+        <div class="sch-head"><b>6</b>الحرية والمسؤولية</div>
+        <div class="sch-body">
+          <div class="sch-flow"><span class="s">الحرية</span><span class="a">←</span><span class="s">الاختيار</span><span class="a">←</span><span class="s">المسؤولية</span><span class="a">←</span><span class="s">المحاسبة</span></div>
+          <h4>أمثلة</h4>
+          <ul><li>حرية التعبير مع احترام الآخرين</li><li>حرية الاختيار مع احترام القانون والشرع</li><li>حرية وسائل التواصل دون إيذاء الآخرين</li><li>إبداء الرأي دون سب أو تشهير</li></ul>
+        </div>
+      </div>
+
+      <div class="sch-card anim" style="--c:#4a7c3a">
+        <div class="sch-head"><b>7</b>الحرية المسؤولة والمنفلتة</div>
+        <div class="sch-body">
+          <div class="pair">
+            <div><h4>✅ المسؤولة</h4><ul><li>ترتبط بالكرامة</li><li>تحترم الحقوق</li><li>تقبل المسؤولية</li><li>تصون القيم</li><li>تحقق الخير للفرد والمجتمع</li></ul></div>
+            <div><h4>⚠️ المنفلتة</h4><ul><li>الرغبة معيار كل شيء</li><li>اعتداء على الآخرين</li><li>تهرب من المسؤولية</li><li>تؤدي إلى عبودية الشهوة</li></ul></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sch-card anim" style="--c:#b8742f">
+        <div class="sch-head"><b>8</b>آثار التوحيد في الفرد والمجتمع</div>
+        <div class="sch-body">
+          <h4>في الفرد</h4><ul><li>الكرامة والتحرر</li><li>المسؤولية</li><li>الطمأنينة وقوة الإرادة</li></ul>
+          <h4>في المجتمع</h4><ul><li>المساواة ونفي الاستبداد</li><li>احترام الحقوق والحريات</li><li>التعاون على الخير</li></ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="big-idea anim" style="margin-top:20px">الخلاصة: التوحيد لا يقيّد الإنسان بل يحرره من الخضوع لغير الله، ويمنحه الكرامة والقدرة على مقاومة الشهوات والضغوط، مع تحمل مسؤولية اختياراته واحترام حقوق الآخرين.</div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <button class="navbtn" id="prevBtn">→ <span>السابق</span></button>
+  <div class="mid">
+    <div class="progress"><i id="progressBar"></i></div>
+    <div class="counter" id="counter"></div>
+  </div>
+  <button class="navbtn" id="nextBtn"><span>التالي</span> ←</button>
+</footer>
+
+<script>
+/* =========================================================
+   1) المحتوى (بيانات)
+   ========================================================= */
+var AXES = ["المدخل","المفاهيم","النصوص الشرعية","التوحيد والحرية","العبودية والمسؤولية","التطبيق","الخلاصة والتقويم"];
+
+var OBJECTIVES = [
+  "فهم مفهوم التوحيد.",
+  "فهم مفهوم الحرية.",
+  "معرفة العلاقة بين التوحيد والحرية.",
+  "إدراك كيف يحرر التوحيد الإنسان من العبودية لغير الله.",
+  "التمييز بين الحرية المسؤولة والحرية المنفلتة.",
+  "استثمار النصوص الشرعية في فهم مفهوم الحرية.",
+  "القدرة على مناقشة بعض مظاهر العبودية المعاصرة.",
+  "استخلاص آثار التوحيد في حياة الفرد والمجتمع."
+];
+
+var TEXTS = [
+ {
+  title:"سورة الإخلاص: وحدانية الله", ref:"سورة الإخلاص، الآيات 1 – 4",
+  verse:"قُلْ هُوَ اللَّهُ أَحَدٌ ﴿١﴾ اللَّهُ الصَّمَدُ ﴿٢﴾ لَمْ يَلِدْ وَلَمْ يُولَدْ ﴿٣﴾ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ ﴿٤﴾",
+  vocab:[["أحد","واحد لا شريك له ولا نظير."],["الصمد","السيد الكامل الذي تُقصد إليه الخلائق في حاجاتها، وهو غني عنها."],["لم يلد ولم يولد","منزَّه عن الولد والوالد."],["كفوًا","مثلًا ونظيرًا."]],
+  meaning:"يأمر الله نبيه ﷺ أن يعلن أن الله واحد أحد، وهو الصمد الذي يحتاج إليه كل شيء ولا يحتاج لأحد، لا ولد له ولا والد، ولا يماثله ولا يشبهه أحد.",
+  idea:"وحدانية الله وكماله وغناه المطلق وتنزهه عن الشبيه.",
+  tawhid:"السورة خلاصة التوحيد: الله وحده الأحد الصمد، ولا يستحق غيره العبادة.",
+  freedom:"إذا كان الله وحده هو الصمد الذي تُقصد إليه الحاجات، فلا داعي لأن يتذلل الإنسان لمخلوق محتاج مثله، ولا أن يجعل الناس أو المال سيدًا عليه.",
+  qa:[
+   ["ما القضية التي تعالجها السورة؟","وحدانية الله وتنزهه عن الشريك والشبيه."],
+   ["ما القيمة التي تدعو إليها؟","التوحيد الخالص واللجوء إلى الله وحده في الحاجات."],
+   ["ماذا نستفيد من السورة؟","أن الله هو الغني عن الخلق وكل الخلق محتاجون إليه، وأنه لا مثيل له."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","من أيقن أن الله هو الصمد لم يتذلل لمخلوق من أجل حاجة، فيتحرر من التبعية والاستجداء."],
+   ["ما علاقة السورة بالحرية؟","وحدانية الله تلغي كل سيادة مطلقة لغيره، فيرتفع الإنسان فوق كل خضوع مذل."]
+  ]
+ },
+ {
+  title:"إياك نعبد وإياك نستعين", ref:"سورة الفاتحة، الآية 5",
+  verse:"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾",
+  vocab:[["إياك","نخصك وحدك؛ وتقديمه في الجملة يفيد الحصر."],["نعبد","نخضع ونطيع ونتذلل لك محبة وتعظيمًا."],["نستعين","نطلب منك العون والتوفيق."]],
+  meaning:"نخصك يا رب بالعبادة لا نعبد غيرك، ونخصك بطلب العون لا نستعين بسواك في ما يعجز عنه البشر.",
+  idea:"تخصيص العبادة والاستعانة لله وحده.",
+  tawhid:"الآية تعبير مباشر عن توحيد الألوهية: العبادة والاستعانة لله وحده، ونردد ذلك في كل ركعة.",
+  freedom:"من خصّ الله وحده بالعبادة والاستعانة لم يتعلق بغيره تعلقًا مذلًّا، ولم يخضع لمن يظن أن بيده رزقه أو مصيره.",
+  qa:[
+   ["ما القضية التي تعالجها الآية؟","تخصيص العبادة والاستعانة بالله وحده."],
+   ["ما القيمة التي تدعو إليها؟","الإخلاص والتوكل على الله."],
+   ["ماذا نستفيد من الآية؟","أن العبادة أوسع من الشعائر، وأن الاستعانة بالأسباب لا تتنافى مع الاعتماد على الله."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","لأن من لا يعبد إلا الله لا يستعبده أحد، ومن لا يستعين إلا به لا يُذله طلب حاجته من الناس."],
+   ["ما علاقة الآية بالحرية؟","هي إعلان يومي للتحرر من كل عبودية لغير الله، نكرره في صلاتنا."]
+  ]
+ },
+ {
+  title:"إخلاص الحياة كلها لله", ref:"سورة الأنعام، الآيتان 162 – 163",
+  verse:"قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ﴿١٦٢﴾ لَا شَرِيكَ لَهُ ۖ وَبِذَٰلِكَ أُمِرْتُ وَأَنَا أَوَّلُ الْمُسْلِمِينَ ﴿١٦٣﴾",
+  vocab:[["صلاتي","عبادتي، ومنها الصلاة المعروفة."],["نُسُكي","عبادتي وما أتقرب به إلى الله من ذبائح وقربات."],["محياي ومماتي","حياتي وموتي."],["لا شريك له","لا نِدّ له ولا مثيل في ربوبيته وعبادته."],["أُمرت","كُلّفت وأُوحي إليَّ بذلك."]],
+  meaning:"يأمر الله نبيه ﷺ أن يعلن أن صلاته وعباداته وحياته وموته كلها خالصة لله رب العالمين، لا شريك له، وأن هذا هو ما أُمر به، وهو أول المنقادين لله من هذه الأمة.",
+  idea:"إخلاص العبادة والحياة كلها لله وحده.",
+  tawhid:"تصريح بتوحيد الألوهية: العبادة والحياة والممات كلها لله وحده لا شريك له.",
+  freedom:"من جعل حياته كلها لله لم يصبح تابعًا لأحد من خلقه، ولا أسيرًا لهواه؛ فتتوحد وجهته ويتحرر من التشتت بين أسياد متعددين.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","إخلاص العبادة لله وحده ونفي الشريك عنه."],
+   ["ما القيمة التي يدعو إليها؟","الإخلاص والتوحيد وتوجيه الحياة كلها لله."],
+   ["ماذا نستفيد من النص؟","أن التوحيد ليس شعيرة تؤدى فقط، بل منهج يشمل الحياة كلها: في الحياة وبعد الموت."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","يجعل ولاءه لله وحده، فلا يخضع لغيره ولا يتنازل عن قيمه إرضاءً للناس."],
+   ["ما علاقة النص بالحرية؟","حين تكون الحياة لله وحده يتخلص الإنسان من التبعية للأهواء والبشر، فيصبح صاحب قرار."]
+  ]
+ },
+ {
+  title:"دعوة الرسل: عبادة الله واجتناب الطاغوت", ref:"سورة النحل، الآية 36",
+  verse:"وَلَقَدْ بَعَثْنَا فِي كُلِّ أُمَّةٍ رَّسُولًا أَنِ اعْبُدُوا اللَّهَ وَاجْتَنِبُوا الطَّاغُوتَ ۖ فَمِنْهُم مَّنْ هَدَى اللَّهُ وَمِنْهُم مَّنْ حَقَّتْ عَلَيْهِ الضَّلَالَةُ ۚ فَسِيرُوا فِي الْأَرْضِ فَانظُرُوا كَيْفَ كَانَ عَاقِبَةُ الْمُكَذِّبِينَ ﴿٣٦﴾",
+  vocab:[["بعثنا","أرسلنا."],["الطاغوت","كل ما عُبد من دون الله، وكل من تجاوز حدّه فطُلبت له طاعة مطلقة في معصية الله."],["حقّت عليه الضلالة","ثبتت عليه الضلالة نتيجة موقفه وإعراضه."],["عاقبة","نهاية الأمر ومآله."]],
+  meaning:"بيّن الله أنه أرسل في كل أمة رسولًا بدعوة واحدة: اعبدوا الله وحده واتركوا كل طاغوت. فمنهم من وفقه الله للهداية، ومنهم من ثبتت عليه الضلالة، ثم دعا الناس إلى السير في الأرض والنظر في مصير المكذبين.",
+  idea:"الرسالة الجامعة للأنبياء: عبادة الله وحده واجتناب الطاغوت.",
+  tawhid:"النص يبين أن التوحيد هو جوهر دعوة الرسل جميعًا، وأن اجتناب الطاغوت جزء لا يتجزأ منه.",
+  freedom:"اجتناب الطاغوت يعني التحرر من كل سلطة تطلب الطاعة المطلقة من دون الله. والدعوة إلى النظر والتأمل في عاقبة المكذبين تفترض إنسانًا يفكر ويختار ويتحمل نتيجة موقفه.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","وحدة دعوة الرسل: عبادة الله وحده واجتناب الطاغوت."],
+   ["ما القيمة التي يدعو إليها؟","التوحيد، ورفض الخضوع لكل ما يُعبد أو يُطاع من دون الله."],
+   ["ماذا نستفيد من النص؟","أن التوحيد دعوة عامة لكل الأمم، وأن الناس مختلفون في موقفهم منه، وأن للتأمل في المصائر أثرًا في الاعتبار."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","لأنه يبدأ بنفي الطاغوت: فيحرره من كل سلطة مستبدة تدعي الطاعة المطلقة."],
+   ["ما علاقة النص بالحرية؟","فيه دعوة إلى النظر والاعتبار، أي إلى الاختيار الواعي، مع تحمل عاقبة الاختيار."]
+  ]
+ },
+ {
+  title:"لا إكراه في الدين", ref:"سورة البقرة، الآية 256",
+  verse:"لَا إِكْرَاهَ فِي الدِّينِ ۖ قَد تَّبَيَّنَ الرُّشْدُ مِنَ الْغَيِّ ۚ فَمَن يَكْفُرْ بِالطَّاغُوتِ وَيُؤْمِن بِاللَّهِ فَقَدِ اسْتَمْسَكَ بِالْعُرْوَةِ الْوُثْقَىٰ لَا انفِصَامَ لَهَا ۗ وَاللَّهُ سَمِيعٌ عَلِيمٌ ﴿٢٥٦﴾",
+  vocab:[["إكراه","إجبار الإنسان على فعل ما لا يريد."],["الرشد","الهدى والحق."],["الغيّ","الضلال والباطل."],["الطاغوت","كل ما عُبد من دون الله أو طُلبت له طاعة مطلقة."],["العروة الوثقى","الحبل المحكم الذي يُتمسّك به."],["لا انفصام لها","لا انقطاع لها."]],
+  meaning:"لا يجوز إجبار أحد على اعتناق الدين؛ فقد وضح طريق الهداية وتميز عن طريق الضلال. فمن كفر بكل ما يُعبد من دون الله وآمن بالله وحده فقد تعلّق بأقوى حبل لا ينقطع، والله سميع لأقوال عباده عليم بنياتهم.",
+  idea:"حرية الاعتقاد، والإيمان قناعة لا إكراه.",
+  tawhid:"الكفر بالطاغوت والإيمان بالله هو معنى كلمة التوحيد: نفي لكل معبود سوى الله ثم إثبات للألوهية له وحده.",
+  freedom:"نص صريح في نفي الإكراه في العقيدة، فالإيمان اختيار نابع من القناعة بعد وضوح الحق. والتوحيد نفسه تحرير؛ لأنه يبدأ بالكفر بالطاغوت.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","حرية الاعتقاد ونفي الإكراه في الدين، وبيان معنى التوحيد."],
+   ["ما القيمة التي يدعو إليها؟","احترام الإرادة والاختيار الحر القائم على الاقتناع."],
+   ["ماذا نستفيد من النص؟","أن الإيمان لا يُفرض بالقوة، وأن الحق واضح لمن تأمل، وأن التمسك بالتوحيد أوثق الروابط."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","لأنه يبدأ بالكفر بالطاغوت، أي بالتحرر من كل ما يُعبد أو يُطاع طاعة مطلقة من دون الله."],
+   ["ما علاقة النص بالحرية؟","النص يؤسس لحرية الاختيار في أخطر قضية: الإيمان؛ وما دام الإيمان بلا إكراه، فباقي الأمور أولى بالحرية المسؤولة."]
+  ]
+ },
+ {
+  title:"كلمة سواء: لا أرباب من دون الله", ref:"سورة آل عمران، الآية 64",
+  verse:"قُلْ يَا أَهْلَ الْكِتَابِ تَعَالَوْا إِلَىٰ كَلِمَةٍ سَوَاءٍ بَيْنَنَا وَبَيْنَكُمْ أَلَّا نَعْبُدَ إِلَّا اللَّهَ وَلَا نُشْرِكَ بِهِ شَيْئًا وَلَا يَتَّخِذَ بَعْضُنَا بَعْضًا أَرْبَابًا مِّن دُونِ اللَّهِ ۚ فَإِن تَوَلَّوْا فَقُولُوا اشْهَدُوا بِأَنَّا مُسْلِمُونَ ﴿٦٤﴾",
+  vocab:[["كلمة سواء","كلمة عدل ومشتركة نلتقي عليها."],["أربابًا","سادة يُطاعون طاعة مطلقة في التحليل والتحريم."],["تولّوا","أعرضوا."],["مسلمون","منقادون لله وحده."]],
+  meaning:"يدعو الله نبيه ﷺ أن يدعو أهل الكتاب إلى كلمة عدل مشتركة: ألا نعبد إلا الله، ولا نشرك به شيئًا، ولا يجعل بعضنا بعضًا سادة يُطاعون من دون الله. فإن أعرضوا فليعلنوا ثباتهم على الإسلام.",
+  idea:"الدعوة إلى التوحيد ونفي سيادة الإنسان المطلقة على أخيه الإنسان.",
+  tawhid:"عبادة الله وحده وعدم الإشراك به شيئًا.",
+  freedom:"عبارة «ولا يتخذ بعضنا بعضًا أربابًا من دون الله» مبدأ تحرري: لا سيادة مطلقة لإنسان على إنسان في الطاعة والتشريع؛ فالبشر متساوون في العبودية لله، متحررون من الاستعباد لبعضهم.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","الدعوة إلى كلمة مشتركة: التوحيد ونفي اتخاذ البشر أربابًا."],
+   ["ما القيمة التي يدعو إليها؟","التوحيد، والمساواة بين الناس، والحوار بكلمة سواء."],
+   ["ماذا نستفيد من النص؟","أن الإسلام يدعو إلى الحوار مع الآخر على أرضية مشتركة، وأن الطاعة المطلقة لا تكون إلا لله."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","يمنع أن يستعبد إنسانٌ إنسانًا؛ إذ لا طاعة مطلقة إلا لله."],
+   ["ما علاقة النص بالحرية؟","يؤسس لحرية الإنسان من الاستبداد والتألّه البشري، ويقرر المساواة بين الناس."]
+  ]
+ },
+ {
+  title:"خطر عبودية الهوى", ref:"سورة الجاثية، الآية 23",
+  verse:"أَفَرَأَيْتَ مَنِ اتَّخَذَ إِلَٰهَهُ هَوَاهُ وَأَضَلَّهُ اللَّهُ عَلَىٰ عِلْمٍ وَخَتَمَ عَلَىٰ سَمْعِهِ وَقَلْبِهِ وَجَعَلَ عَلَىٰ بَصَرِهِ غِشَاوَةً فَمَن يَهْدِيهِ مِن بَعْدِ اللَّهِ ۚ أَفَلَا تَذَكَّرُونَ ﴿٢٣﴾",
+  vocab:[["اتخذ إلهه هواه","جعل ما تهواه نفسه معبودًا يطيعه طاعة مطلقة."],["على علم","بعد أن بلغه العلم وقامت عليه الحجة."],["ختم على سمعه وقلبه","طبع عليهما فلا ينتفع بالموعظة."],["غشاوة","غطاء يحجب الرؤية."],["تذكّرون","تتعظون وتعتبرون."]],
+  meaning:"يتعجب الله من حال من جعل هواه إلهًا يطيعه، فأضله الله بعد قيام الحجة عليه، وطبع على سمعه وقلبه وجعل على بصره غطاءً، فمن يهديه بعد الله؟ ثم يدعو إلى التذكر والاعتبار.",
+  idea:"التحذير من اتباع الهوى حتى يصير كأنه إله معبود.",
+  tawhid:"الإله الحق هو الله وحده؛ ومن أطاع هواه طاعة مطلقة فقد أعطاه مكانة لا يستحقها إلا الله.",
+  freedom:"النص يصور العبودية الباطنية: من أسره هواه لا يملك قراره، فيفقد انتفاعه بسمعه وعقله وبصيرته. والتوحيد يحرر الإنسان من هذا الأسر الداخلي.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","خطر اتباع الهوى حتى يصبح الإنسان عبدًا له."],
+   ["ما القيمة التي يدعو إليها؟","تحكيم العقل والشرع وضبط النفس، والتذكر والاعتبار."],
+   ["ماذا نستفيد من النص؟","أن العبودية قد تكون للهوى لا للأصنام فقط، وأن الاستمرار في اتباعه يعمي البصيرة."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","يجعل الله وحده هو الإله، فلا يبقى مكان لإله باطل اسمه الهوى."],
+   ["ما علاقة النص بالحرية؟","من اتبع هواه ظن أنه حر، وهو في الحقيقة أسير؛ فالحرية الحقيقية تحكم في الرغبات لا استسلام لها."]
+  ]
+ },
+ {
+  title:"تكريم الإنسان", ref:"سورة الإسراء، الآية 70",
+  verse:"وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ وَحَمَلْنَاهُمْ فِي الْبَرِّ وَالْبَحْرِ وَرَزَقْنَاهُم مِّنَ الطَّيِّبَاتِ وَفَضَّلْنَاهُمْ عَلَىٰ كَثِيرٍ مِّمَّنْ خَلَقْنَا تَفْضِيلًا ﴿٧٠﴾",
+  vocab:[["كرّمنا","جعلنا لهم قدرًا وشرفًا ومكانة."],["حملناهم في البر والبحر","يسّرنا لهم وسائل الركوب والتنقل."],["الطيبات","ما يستطاب من الرزق الحلال."],["فضّلناهم","جعلناهم أفضل وأعلى منزلة."]],
+  meaning:"يمتن الله على بني آدم بأنه كرّمهم، وسخّر لهم وسائل التنقل في البر والبحر، ورزقهم من الطيبات، وفضّلهم على كثير من المخلوقات تفضيلًا عظيمًا.",
+  idea:"الكرامة الإنسانية أصل ثابت من عند الله.",
+  tawhid:"الإنسان مخلوق مكرَّم لله وحده، فلا يليق بمن كرّمه الخالق أن يُذل نفسه لمخلوق مثله أو لشهوة.",
+  freedom:"التكريم الإلهي أساس حقوق الإنسان، ومنها حريته. والإنسان المكرَّم لا يُستعبد ولا يُهان.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","تكريم الله لبني آدم وتفضيلهم."],
+   ["ما القيمة التي يدعو إليها؟","الكرامة الإنسانية والشكر لله."],
+   ["ماذا نستفيد من النص؟","أن الإنسان مكرَّم بالأصل، فلا يجوز إذلاله ولا إذلال نفسه، وأن عليه شكر النعم."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","من آمن بأن الله كرّمه شعر بقيمته فلا يخضع لمخلوق ولا يُذل نفسه من أجل مال أو جاه."],
+   ["ما علاقة النص بالحرية؟","الكرامة هي أساس الحرية؛ فلا حرية بلا كرامة ولا كرامة مع الاستعباد."]
+  ]
+ },
+ {
+  title:"مسؤولية الإنسان عن اختياره", ref:"سورة الإنسان، الآية 3 + سورة المدثر، الآية 38",
+  verse:"إِنَّا هَدَيْنَاهُ السَّبِيلَ إِمَّا شَاكِرًا وَإِمَّا كَفُورًا ﴿٣﴾ <br> كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ ﴿٣٨﴾",
+  vocab:[["هديناه السبيل","بيّنا له طريق الحق وطريق الباطل."],["شاكرًا","مؤمنًا مطيعًا شاكرًا لنعمة ربه."],["كفورًا","جاحدًا كافرًا بالنعمة."],["كسبت","عملت واختارت."],["رهينة","مرتهنة، أي محاسَبة بما عملت."]],
+  meaning:"بيّن الله للإنسان طريق الحق والباطل، وترك له الاختيار: إما أن يكون شاكرًا مؤمنًا وإما جاحدًا. وكل نفس مرتهنة بما عملت، أي مسؤولة عن نتائج أعمالها.",
+  idea:"الإنسان مُبيَّن له الطريق ومخيَّر ومسؤول.",
+  tawhid:"الإيمان بأن الله هو الهادي والمحاسِب يزرع الشعور بالمسؤولية أمام الله وحده.",
+  freedom:"النص يثبت أن الاختيار والمسؤولية متلازمان: لا حرية بلا محاسبة ولا محاسبة بلا حرية.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","حرية الإنسان في الاختيار ومسؤوليته عن نتائجه."],
+   ["ما القيمة التي يدعو إليها؟","تحمل المسؤولية والالتزام بنتائج الاختيار."],
+   ["ماذا نستفيد من النص؟","أن الله بيّن الطريق وأقام الحجة، وأن كل إنسان يتحمل عمله."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","يجعله يشعر أنه مسؤول أمام الله وحده، فلا يلقي بتبعة أخطائه على الظروف أو على الآخرين."],
+   ["ما علاقة النص بالحرية؟","هو الأساس الشرعي لقاعدة: الحرية → الاختيار → المسؤولية → المحاسبة."]
+  ]
+ },
+ {
+  title:"أأرباب متفرقون خير أم الله الواحد؟", ref:"سورة يوسف، الآية 39",
+  verse:"يَا صَاحِبَيِ السِّجْنِ أَأَرْبَابٌ مُّتَفَرِّقُونَ خَيْرٌ أَمِ اللَّهُ الْوَاحِدُ الْقَهَّارُ ﴿٣٩﴾",
+  vocab:[["صاحبي السجن","رفيقيَّ في السجن."],["أأرباب متفرقون","آلهة وسادة متعددون مختلفون."],["الواحد","المنفرد بالألوهية."],["القهار","الغالب الذي يخضع له كل شيء."]],
+  meaning:"يخاطب يوسف عليه السلام رفيقيه في السجن بسؤال يدعو للتفكير: هل أن تخضعوا لسادة وآلهة متعددين متفرقين خير، أم أن تخضعوا لله الواحد القهار؟",
+  idea:"المقارنة بين التعدد المشتِّت والتوحيد الموحِّد.",
+  tawhid:"الله وحده هو الواحد القهار المستحق للعبادة، أما غيره فلا يملك لنفسه ولا لغيره شيئًا.",
+  freedom:"لاحظوا: المتكلم مسجون جسديًا لكنه حر في عقيدته! ومن خضع لأسياد متعددين (أهواء وضغوطًا ومصالح) تشتت وتناقضت أوامره، أما من خضع لإله واحد فتتوحد وجهته.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","المفاضلة بين التوحيد وتعدد الأرباب."],
+   ["ما القيمة التي يدعو إليها؟","التفكير بالحجة والعقل، والإيمان بالإله الواحد."],
+   ["ماذا نستفيد من النص؟","أن الدعوة إلى التوحيد تكون بأسلوب السؤال والحوار، وأن الداعية يدعو حتى في أحلك الظروف."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","ينقله من تعدد الأسياد المتضاربين إلى سيد واحد، فيتحرر من الحيرة والتشتت."],
+   ["ما علاقة النص بالحرية؟","يوسف مسجون جسديًا لكنه حر روحيًا؛ فالحرية الحقيقية داخلية قبل أن تكون خارجية."]
+  ]
+ },
+ {
+  title:"مثل العبد لأسياد متنازعين", ref:"سورة الزمر، الآية 29",
+  verse:"ضَرَبَ اللَّهُ مَثَلًا رَّجُلًا فِيهِ شُرَكَاءُ مُتَشَاكِسُونَ وَرَجُلًا سَلَمًا لِّرَجُلٍ هَلْ يَسْتَوِيَانِ مَثَلًا ۚ الْحَمْدُ لِلَّهِ ۚ بَلْ أَكْثَرُهُمْ لَا يَعْلَمُونَ ﴿٢٩﴾",
+  vocab:[["مثلًا","صورة تقرّب المعنى إلى الأفهام."],["شركاء متشاكسون","شركاء مختلفون متنازعون، كل منهم يريد أن يستأثر به."],["سلمًا لرجل","خالصًا لرجل واحد لا ينازعه فيه أحد."],["هل يستويان","لا يستويان."]],
+  meaning:"يضرب الله مثلًا بعبد يملكه شركاء متنازعون يتجاذبونه، وعبد آخر يملكه سيد واحد، ثم يسأل: هل يستوي حال الاثنين؟ فيُحمد الله على وضوح الحق، لكن أكثر الناس لا يعلمون.",
+  idea:"التوحيد راحة وصفاء، والشرك حيرة وتشتت.",
+  tawhid:"المثل يصوّر المشرك كمن يخدم أسيادًا متعددين متنازعين، والموحِّد كمن يخدم سيدًا واحدًا.",
+  freedom:"العبد لأسياد متنازعين لا يعرف من يرضي، فيعيش في قلق وضياع؛ أما من أخلص لله فيستقر قلبه ويتحرر من إرضاء الجميع.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","المقارنة بين حال الموحِّد وحال المشرك بمثل محسوس."],
+   ["ما القيمة التي يدعو إليها؟","التوحيد وما يمنحه من وضوح واستقرار."],
+   ["ماذا نستفيد من النص؟","أن القرآن يستعمل الأمثال لتقريب المعاني، وأن التعدد في الولاءات يورث الاضطراب."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","يخلصه من تنازع الولاءات (الأصدقاء والمظاهر والأهواء) ويوحد وجهته."],
+   ["ما علاقة النص بالحرية؟","من حاول إرضاء الجميع صار عبدًا للجميع، والحر من جعل رضا الله هو الغاية."]
+  ]
+ },
+ {
+  title:"رفض الطاعة العمياء للبشر", ref:"سورة التوبة، الآية 31",
+  verse:"اتَّخَذُوا أَحْبَارَهُمْ وَرُهْبَانَهُمْ أَرْبَابًا مِّن دُونِ اللَّهِ وَالْمَسِيحَ ابْنَ مَرْيَمَ وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا إِلَٰهًا وَاحِدًا ۖ لَّا إِلَٰهَ إِلَّا هُوَ ۚ سُبْحَانَهُ عَمَّا يُشْرِكُونَ ﴿٣١﴾",
+  vocab:[["أحبارهم","علماؤهم (من اليهود)."],["رهبانهم","عبّادهم (من النصارى)."],["أربابًا","سادة يُطاعون طاعة مطلقة في التحليل والتحريم."],["وما أُمروا","وما كُلّفوا."],["سبحانه","تنزيهًا له."]],
+  meaning:"ذمّ الله من جعلوا علماءهم وعبّادهم سادة يطيعونهم طاعة مطلقة في التحليل والتحريم دون الرجوع إلى حكم الله، واتخذوا المسيح ابن مريم ربًّا، مع أنهم لم يؤمروا إلا بعبادة إله واحد لا إله إلا هو، تعالى عما يشركون.",
+  idea:"لا طاعة مطلقة لبشر في التشريع من دون الله.",
+  tawhid:"الطاعة المطلقة في التحليل والتحريم حق لله وحده، ومن أعطاها لغيره فقد أشرك.",
+  freedom:"النص يحرر العقل من التقليد الأعمى؛ فلا يجوز أن يتحول بشر إلى سلطة مطلقة. وهذا لا يعني عدم احترام العلماء، بل أن يُعرض كل قول على الدليل وأن تكون الطاعة المطلقة لله وحده.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","اتخاذ البشر أربابًا بإعطائهم حق التشريع المطلق."],
+   ["ما القيمة التي يدعو إليها؟","التوحيد وتحرير العقل من التقليد الأعمى."],
+   ["ماذا نستفيد من النص؟","أن الشرك قد يكون في الطاعة والتشريع وليس في السجود للأصنام فقط."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","لأنه يجعل الإنسان يزن الأقوال بالدليل، ولا يسلّم عقله لأي سلطة بشرية مطلقة."],
+   ["ما علاقة النص بالحرية؟","حرية التفكير مرتبطة بعدم تقديس الأشخاص، وبأن يكون المرجع الأعلى هو الحق."]
+  ]
+ },
+ {
+  title:"لكم دينكم ولي دين", ref:"سورة الكافرون، الآيات 1 – 6",
+  verse:"قُلْ يَا أَيُّهَا الْكَافِرُونَ ﴿١﴾ لَا أَعْبُدُ مَا تَعْبُدُونَ ﴿٢﴾ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ﴿٣﴾ وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ ﴿٤﴾ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ﴿٥﴾ لَكُمْ دِينُكُمْ وَلِيَ دِينِ ﴿٦﴾",
+  vocab:[["الكافرون","الجاحدون لتوحيد الله."],["لا أعبد ما تعبدون","أتبرأ من عبادة آلهتكم."],["عابدون","مخلصون في العبادة."],["دينكم","ما تدينون به من عقيدة وعمل."],["ولي دين","ولي ديني الذي أدين به."]],
+  meaning:"يأمر الله نبيه ﷺ أن يعلن بوضوح براءته من عبادة غير الله، وأنه لن يعبد ما يعبدون، وأنهم لا يعبدون ما يعبد، وأن لكل فريق ما اختار لنفسه من دين.",
+  idea:"الوضوح والثبات في التوحيد مع احترام الاختيار.",
+  tawhid:"براءة صريحة من الشرك وإخلاص العبادة لله وحده دون مساومة.",
+  freedom:"السورة تقرر ثبات المؤمن على مبدئه فلا يتنازل تحت الضغط، وتؤسس لاعتراف كل طرف بحق الآخر في اختيار ما يعتقد، مع تحمل مسؤولية هذا الاختيار.",
+  qa:[
+   ["ما القضية التي تعالجها السورة؟","التمايز في العقيدة: التوحيد في مقابل الشرك."],
+   ["ما القيمة التي تدعو إليها؟","الثبات على المبدأ والوضوح في الموقف."],
+   ["ماذا نستفيد من السورة؟","ألا نساوم في مبادئنا، وأن لكل إنسان اختياره الذي يُسأل عنه."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","يمنحه الشجاعة ليقول «لا» لما يخالف عقيدته مهما كانت الضغوط."],
+   ["ما علاقة السورة بالحرية؟","فيها حرية الاعتقاد، مع ثبات الإنسان على ما اختار، وعدم انسياقه لضغط الجماعة."]
+  ]
+ },
+ {
+  title:"النفس بين الفجور والتقوى", ref:"سورة الشمس، الآيات 7 – 10",
+  verse:"وَنَفْسٍ وَمَا سَوَّاهَا ﴿٧﴾ فَأَلْهَمَهَا فُجُورَهَا وَتَقْوَاهَا ﴿٨﴾ قَدْ أَفْلَحَ مَن زَكَّاهَا ﴿٩﴾ وَقَدْ خَابَ مَن دَسَّاهَا ﴿١٠﴾",
+  vocab:[["سوّاها","عدّلها وأتم خلقها."],["ألهمها","عرّفها وبيّن لها."],["فجورها","طريق المعصية والانحراف."],["تقواها","طريق الطاعة والخشية."],["زكّاها","طهّرها ونمّاها بالطاعة."],["دسّاها","أخفاها وأفسدها بالمعصية."],["خاب","خسر ولم يظفر."]],
+  meaning:"يقسم الله بالنفس وبمن سوّاها وكمّل خلقها، وأنه بيّن لها طريق الفجور وطريق التقوى. فقد فاز من طهّر نفسه ونمّاها بالخير، وخسر من أفسدها بالمعصية.",
+  idea:"الإنسان قادر على التمييز واختيار طريقه، والفلاح في تزكية النفس.",
+  tawhid:"تزكية النفس لا تتحقق إلا بالإيمان بالله وحده والاستقامة على طاعته.",
+  freedom:"الإنسان مزوَّد بالقدرة على معرفة الخير والشر واختيار أحدهما، فمن ضبط نفسه وزكّاها أفلح، ومن أطلقها لشهواتها خسر؛ فالحرية الحقيقية انتصار على الهوى.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","قدرة النفس على الخير والشر ومسؤولية الإنسان عن تزكيتها."],
+   ["ما القيمة التي يدعو إليها؟","تزكية النفس وضبط الهوى."],
+   ["ماذا نستفيد من النص؟","أن الله ألهم الإنسان تمييز الخير من الشر، وأن النجاح في تربية النفس لا في إطلاقها."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","التوحيد يمد النفس بقوة الإيمان لمقاومة الشهوات ويحررها من أسر الهوى."],
+   ["ما علاقة النص بالحرية؟","الإنسان حر في اختيار طريقه، لكن الفلاح في التزكية والخسارة في الانفلات."]
+  ]
+ },
+ {
+  title:"المساواة وأساس التفاضل", ref:"سورة الحجرات، الآية 13",
+  verse:"يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُم مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا ۚ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ ۚ إِنَّ اللَّهَ عَلِيمٌ خَبِيرٌ ﴿١٣﴾",
+  vocab:[["شعوبًا","أممًا كبيرة."],["قبائل","جماعات أصغر من الشعوب."],["لتعارفوا","ليعرف بعضكم بعضًا."],["أكرمكم","أعلاكم قدرًا ومنزلة."],["أتقاكم","أكثركم خشية لله والتزامًا بطاعته."],["خبير","مطّلع على الظواهر والخفايا."]],
+  meaning:"يخاطب الله الناس جميعًا فيقول إنه خلقهم من أصل واحد، وجعلهم شعوبًا وقبائل ليتعارفوا لا ليتفاخروا، وإن أعلاهم قدرًا عنده أكثرهم تقوى، والله عليم بحقيقتهم خبير بهم.",
+  idea:"المساواة بين الناس في الأصل، والتفاضل بالتقوى والعمل.",
+  tawhid:"الأصل الواحد والخالق الواحد يجعل الناس متساوين في العبودية لله، والتفاضل عنده بالتقوى.",
+  freedom:"لا فضل لأحد على آخر بسبب نسبه أو لونه أو ماله؛ فلا يُذل إنسان نفسه لمن يظن أنه أرفع منه، ولا يستعبد غيره. وبذلك تتحرر العلاقات الإنسانية من الكِبر والاستعلاء.",
+  qa:[
+   ["ما القضية التي يعالجها النص؟","المساواة بين الناس ومعيار التفاضل الصحيح."],
+   ["ما القيمة التي يدعو إليها؟","المساواة والتعارف والتقوى."],
+   ["ماذا نستفيد من النص؟","أن اختلاف الشعوب والألوان للتعارف لا للتفاخر، وأن الكرامة بالعمل لا بالنسب."],
+   ["كيف يساهم التوحيد في تحرير الإنسان؟","وحدة الخالق تقتضي وحدة الأصل والمساواة، فلا يخضع إنسان لإنسان بسبب نسبه أو ماله."],
+   ["ما علاقة النص بالحرية؟","يمنع الاستعباد والتمييز، فيحفظ كرامة الإنسان وحقه في أن يُعامل معاملة متساوية."]
+  ]
+ }
+];
+
+var REL = [
+ ["التوحيد يحرر الإنسان من عبودية البشر","لأن الطاعة المطلقة لله وحده، فلا يخضع لمستبد ولا يطيع مخلوقًا في معصية الخالق.","«لا طاعة في معصية الله» — مثال: موظف يرفض توقيع وثيقة مزورة رغم ضغط مسؤوله."],
+ ["التوحيد يحرره من عبودية الشهوات والأهواء","لأنه يعلم أن الإله الحق واحد، فلا يجعل رغبته إلهًا يقوده.","مثال: تلميذ يقاوم إغراء قضاء الليل في الألعاب ليحافظ على صلاته ودراسته."],
+ ["التوحيد يحرره من الخوف المفرط من الناس","لأن الخوف الحقيقي والرجاء الكامل لله وحده، فلا يُرهبه كلام الناس ولا تخيفه نظراتهم.","مثال: تلميذة تقول الحق في القسم رغم خوفها من سخرية بعض زميلاتها."],
+ ["التوحيد يحرره من عبودية المال والمظاهر","لأن قيمة الإنسان عنده بعمله وأخلاقه لا بما يملك ولا بماركة ما يلبس.","مثال: شاب يرفض رشوة مغرية، ولا يلهث وراء تقليد المشاهير."],
+ ["التوحيد يجعله مسؤولًا عن اختياراته","لأنه يعتقد أن الله يراقبه ويحاسبه، فلا يبحث عن مبررات أو يلقي اللوم على غيره.","مثال: تلميذ يعترف بتقصيره في المراجعة ويصلح أمره بدل أن يتهم أستاذه."],
+ ["التوحيد يمنحه كرامة الإنسان","لأنه يدرك أن الله كرّمه، فلا يُذل نفسه ولا يقبل الإهانة.","مثال: من يطلب حقه بأدب وقوة دون تملّق ولا استجداء."]
+];
+
+var SLAV = [
+ ["🍬","عبودية الشهوة","حين تصبح الرغبة هي الآمر الناهي، فيفعل الإنسان ما تشتهي نفسه ولو ضره.","من لا يستطيع التوقف عن شيء يضره رغم علمه بضرره."],
+ ["💰","عبودية المال","حين يصير جمع المال غاية مطلقة تُضحّى من أجلها القيم.","من يترك الأمانة والصدق من أجل ربح سريع."],
+ ["⭐","عبودية الشهرة","حين تتحول الرغبة في الظهور إلى هدف يبرر كل شيء.","من يفعل أي شيء ليحصل على إعجابات ومتابعين."],
+ ["👕","عبودية الموضة والمظاهر","حين تصبح قيمة الإنسان في ما يلبس لا في ما يحمل من أخلاق.","شراء أشياء لا نحتاجها لمجرد إرضاء الناس."],
+ ["👥","الخضوع لضغط الأصدقاء","حين يفعل الإنسان ما لا يقتنع به خوفًا من فقد صحبته.","تلميذ يشاركهم في أمر خاطئ كي لا يُقال عنه «ضعيف»."],
+ ["😰","الخوف المرضي من كلام الناس","حين يتحكم «ماذا سيقولون؟» في كل قرارات الإنسان.","ترك عمل صالح لأن البعض قد يسخر منه."],
+ ["👁️","التعلق المفرط بآراء الآخرين","حين يصبح رضا الناس هو المعيار الوحيد لقيمة الإنسان.","من يغيّر مواقفه كل يوم لإرضاء من حوله."],
+ ["📱","الإدمان على وسائل التواصل","حين تتحكم الشاشة في وقت الإنسان ومزاجه وقراراته.","من يقطع نومه ودراسته ليبقى متصلًا بالإشعارات."]
+];
+
+var STEPS = [
+ ["التوحيد",""],
+ ["توحيد الله في العبادة والخضوع","الطاعة المطلقة لله وحده"],
+ ["رفض العبودية لغير الله","لا للأهواء، ولا للاستبداد، ولا للمال والمظاهر"],
+ ["تحرير الإنسان","من الخوف والتبعية والاستعباد"],
+ ["الكرامة والمسؤولية","إنسان مكرَّم، يختار ويتحمل نتيجة اختياره"],
+ ["الحرية الحقيقية","حرية مسؤولة تبني الفرد والمجتمع"]
+];
+
+var SITUATIONS = [
+ {t:"الموقف 1: ضغط الأصدقاء",
+  s:"طلب أصدقاء من أحمد أن يغش في الامتحان، وقالوا له: «إذا كنت حرًا فافعل ما تريد.»",
+  q:"هل قبول أحمد للغش دليل على الحرية؟ علّل.",
+  a:"لا؛ لأن أحمد إن قبل فهو خاضع لضغط أصدقائه وخوفه من وصفهم له، لا لقناعته. الحرية اختيار مسؤول لا يعتدي على الحق والقيم، والغش ظلم لزملائه وخيانة للأمانة. أما رفضه فهو الحرية الحقيقية، لأنه يتصرف بإرادته وقيمه، ويستمد قوته من إيمانه بأن الله مطلع عليه."},
+ {t:"الموقف 2: إرضاء الآخرين",
+  s:"شخص يشتري أشياء لا يحتاج إليها فقط حتى يرضى عنه الآخرون.",
+  q:"هل هو حر فعلًا؟",
+  a:"ليس حرًا بالمعنى الحقيقي؛ فقراراته تتحكم فيها نظرة الناس لا حاجته وإرادته. هو أسير للمظاهر ولرأي الآخرين فيه. أما الحر فيشتري بقدر حاجته وإمكاناته، ولا يجعل رضا الناس هو معيار قيمته، لأن قيمته عنده بأخلاقه وعمله."},
+ {t:"الموقف 3: احترام حقوق الآخرين",
+  s:"تلميذة ترفض نشر صورة زميلتها دون إذنها رغم ضغط صديقاتها.",
+  q:"ما القيمة التي تظهر في موقفها؟",
+  a:"تظهر قيم: احترام الخصوصية وحقوق الآخرين، والمسؤولية، والشجاعة في مقاومة ضغط الجماعة. وموقفها مثال على الحرية الحقيقية: فهي تختار بقناعتها وتحمي كرامة زميلتها، ولا تنقاد للأغلبية. وهذه هي ثمرة التوحيد: خوف من الله وحده لا من لوم الصديقات."},
+ {t:"الموقف 4 (للتعميق): حرية الرأي",
+  s:"تلميذ يختلف مع زميله في نقاش، فيرد عليه بالسب والسخرية ويقول: «أنا حر في التعبير.»",
+  q:"هل ما فعله تعبير حر مسؤول؟",
+  a:"لا؛ فحرية التعبير مشروطة باحترام الآخرين وعدم السب والتشهير. الرأي الحر يُعرض بالحجة والأدب، أما السب فهو اعتداء على كرامة الآخر، وليس ممارسة للحرية بل انفلات منها."}
+];
+
+var QUIZ = [
+ {q:"ما معنى التوحيد اصطلاحًا؟",o:["إفراد الله بالعبادة والطاعة المطلقة","الاعتقاد بوجود قوة عليا فقط","ممارسة الشعائر الدينية دون غيرها","احترام الأولياء والصالحين"],e:"التوحيد هو إفراد الله بالعبادة والطاعة المطلقة، وهو أعمّ من مجرد أداء الشعائر."},
+ {q:"أي تعريف يناسب الحرية في الإسلام؟",o:["اختيار مسؤول في إطار الحق والشرع دون اعتداء على الآخرين","فعل كل ما تشتهيه النفس","غياب كل القيود والقوانين","التخلص من كل التزام ديني"],e:"الحرية في الإسلام اختيار مسؤول مقيّد بالحق وبعدم الاعتداء على حقوق الآخرين."},
+ {q:"ما العلاقة بين التوحيد والحرية؟",o:["التوحيد يحرر الإنسان من العبودية لغير الله","التوحيد يتعارض مع الحرية","لا علاقة بينهما","التوحيد يلغي إرادة الإنسان"],e:"التوحيد أساس الحرية: يحرر الإنسان من الخضوع للبشر والأهواء والمال."},
+ {q:"أي عبارة تعبّر عن «الحرية المنفلتة»؟",o:["اعتبار الرغبة معيارًا لكل شيء","الاختيار مع تحمل المسؤولية","احترام حقوق الآخرين","الالتزام بالقيم"],e:"الحرية المنفلتة تجعل الرغبة هي المعيار، فتؤدي إلى الاعتداء والتهرب من المسؤولية."},
+ {q:"ما التسلسل الصحيح للحرية والمسؤولية؟",o:["الحرية ← الاختيار ← المسؤولية ← المحاسبة","المسؤولية ← الحرية ← الفوضى","الاختيار ← الإكراه ← الحرية","الحرية ← الفوضى ← الحرية"],e:"الإنسان حر في اختياراته، فيتحمل مسؤوليتها، ويُحاسب عليها."},
+ {q:"إلى ماذا تشير الآية ﴿أَفَرَأَيْتَ مَنِ اتَّخَذَ إِلَٰهَهُ هَوَاهُ﴾؟",o:["إلى من يطيع هواه طاعة مطلقة فكأنه يعبده","إلى من يعبد الأصنام فقط","إلى من يتأمل في الكون","إلى من يدعو الله"],e:"الآية تحذر من عبودية الهوى: حين يصبح الهوى هو الآمر المطاع طاعة مطلقة."},
+ {q:"ماذا نستفيد من قوله تعالى ﴿لَا إِكْرَاهَ فِي الدِّينِ﴾؟",o:["أن الإيمان قناعة واختيار لا إكراه","أن الدين لا قيود له","أن لا حدود في الأخلاق","أن العبادة اختيارية في كل حال"],e:"الآية تقرر حرية الاعتقاد: الإيمان يقوم على القناعة، ولا يجوز فرضه بالقوة."},
+ {q:"أي موقف يمثل مظهرًا من مظاهر العبودية المعاصرة؟",o:["فعل شيء لا نريده لأن الأصدقاء طلبوا ذلك","اختيار التخصص بعد تفكير","رفض الغش رغم ضغط الزملاء","إبداء الرأي بأدب"],e:"من يفعل ما لا يريد خوفًا من الأصدقاء فقد فقد إرادته، وهذا مظهر من الخضوع لغير الله."},
+ {q:"ماذا تدل عليه الآية ﴿كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ﴾؟",o:["مسؤولية كل إنسان عن اختياراته وأعماله","أن الإنسان مجبر على أفعاله","أن الجزاء بلا حساب","أن الناس يتحملون ذنوب بعضهم"],e:"الآية تقرر المسؤولية الفردية: كل نفس مرتهنة بما عملت."},
+ {q:"ما الذي يؤسس له قوله تعالى ﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾؟",o:["كرامة الإنسان التي ترفض الاستعباد","تفوق قوم على قوم","إباحة كل تصرف للإنسان","إلغاء المسؤولية"],e:"التكريم الإلهي أساس الكرامة الإنسانية والحرية، ويمنع استعباد الإنسان."},
+ {q:"ماذا يعني ﴿وَلَا يَتَّخِذَ بَعْضُنَا بَعْضًا أَرْبَابًا مِّن دُونِ اللَّهِ﴾؟",o:["ألا يُطاع بشر طاعة مطلقة من دون الله","ألا نحترم الوالدين","ألا نتعاون مع الناس","ألا نطيع أي قانون"],e:"الآية تنفي أن يكون لأحد من البشر سلطان مطلق على الآخرين في الطاعة والتشريع."},
+ {q:"متى تنتهي حرية التعبير؟",o:["حين تبدأ في الاعتداء على كرامة الآخرين وحقوقهم","لا تنتهي أبدًا","حين يخالفنا أحد","حين نشعر بالملل"],e:"حرية التعبير مشروعة ما دامت لا تتحول إلى سب أو تشهير أو اعتداء على حقوق الآخرين."}
+];
+
+var TERMS = [
+ ["التوحيد","إفراد الله تعالى بالعبادة والطاعة المطلقة، واعتقاد أنه الواحد الأحد في ربوبيته وألوهيته وأسمائه وصفاته.","مثال: أدعو الله وحده، ولا أطيع مخلوقًا في معصية الله."],
+ ["الحرية","قدرة الإنسان على الاختيار والتصرف بإرادته دون إكراه، في إطار الحق والضوابط ودون اعتداء على حقوق الغير.","مثال: أختار شعبتي بقناعتي، وأحترم قوانين المؤسسة."],
+ ["العبودية","الخضوع والانقياد والتذلل. وهي لله وحده عبودية تحرر، وإن كانت لغيره (للبشر أو الأهواء أو المال) كانت عبودية تذل.","مثال: من لا يستطيع ترك هاتفه لساعة قد صار عبدًا له."],
+ ["المسؤولية","تحمل الإنسان نتائج اختياراته وأفعاله، واستعداده للمحاسبة عليها.","مثال: أعترف بتقصيري في المراجعة وأصلحه."],
+ ["الكرامة","القيمة والشرف الذي منحه الله للإنسان، ويقتضي احترام ذاته وحقوقه وعدم إذلاله.","مثال: أطلب حقي بأدب دون تملّق."],
+ ["الشهوة","ميل النفس إلى ما تحبه وتشتهيه. وهي فطرية، ولا تذم في ذاتها، بل حين تتحكم في الإنسان وتصبح قائده.","مثال: الميل للطعام شهوة مباحة، أما الإفراط المؤذي فمذموم."],
+ ["الهوى","ميل النفس إلى ما تريد دون ضابط من العقل والشرع، وغلب استعماله في الميل المذموم.","مثال: ترك الواجب اتباعًا لما تشتهيه النفس في لحظتها."],
+ ["الخضوع","الانقياد والاستسلام لمن له سلطة أو تأثير. محمود لله وحده، ومذموم إن كان لغيره طاعة مطلقة في معصية.","مثال: الخضوع لضغط الأصدقاء في الغش."]
+];
+
+var ASSESS = [
+ ["أسئلة مباشرة",[
+  ["عرّف التوحيد.","التوحيد لغة: جعل الشيء واحدًا. واصطلاحًا: إفراد الله تعالى بالعبادة والطاعة المطلقة، واعتقاد وحدانيته في ربوبيته وألوهيته وأسمائه وصفاته."],
+  ["عرّف الحرية.","الحرية: قدرة الإنسان على الاختيار والتصرف بإرادته دون إكراه، في إطار الحق والشرع، وبما لا يعتدي على حقوق الآخرين."],
+  ["ما العلاقة بين التوحيد والحرية؟","علاقة تأسيس: التوحيد أساس الحرية؛ لأنه يحرر الإنسان من عبودية البشر والأهواء والمال، ويمنحه الكرامة والمسؤولية."]
+ ]],
+ ["أسئلة الفهم",[
+  ["كيف يحرر التوحيد الإنسان؟","بجعل الطاعة المطلقة لله وحده، فلا يخضع لمخلوق في معصية الخالق، ولا لشهواته، ولا للمال والمظاهر، ولا يخاف من الناس خوفًا مفرطًا؛ فيصبح صاحب إرادة."],
+  ["لماذا لا تعني الحرية فعل كل ما يريد الإنسان؟","لأن الرغبة قد تضر صاحبها أو تعتدي على الآخرين، ومن يتبع كل رغباته يصبح عبدًا لها؛ فالحرية اختيار مسؤول في إطار الحق وحقوق الآخرين."]
+ ]],
+ ["أسئلة التحليل",[
+  ["بيّن مظاهر العبودية المعاصرة.","عبودية الشهوة، والمال، والشهرة، والموضة والمظاهر، والخضوع لضغط الأصدقاء، والخوف المرضي من كلام الناس، والتعلق المفرط برأي الآخرين، والإدمان على وسائل التواصل."],
+  ["وضّح العلاقة بين الحرية والمسؤولية.","الحرية تقتضي الاختيار، والاختيار يترتب عليه تحمل المسؤولية، والمسؤولية تقتضي المحاسبة: الحرية ← الاختيار ← المسؤولية ← المحاسبة. فلا حرية بلا مسؤولية."]
+ ]],
+ ["سؤال تركيبي",[
+  ["اكتب فقرة تبيّن فيها كيف يساهم التوحيد في تحرير الإنسان.","نموذج: يساهم التوحيد في تحرير الإنسان لأنه يجعل الطاعة المطلقة لله وحده، فلا يخضع الموحِّد لمخلوق في معصية الله، ولا يستسلم لشهواته وأهوائه، ولا يصير عبدًا للمال والمظاهر أو أسيرًا لضغط الآخرين. وبذلك يشعر بكرامته التي منحها الله له، ويتحمل مسؤولية اختياراته، ويحترم حقوق غيره. وقد قال تعالى: ﴿فَمَن يَكْفُرْ بِالطَّاغُوتِ وَيُؤْمِن بِاللَّهِ فَقَدِ اسْتَمْسَكَ بِالْعُرْوَةِ الْوُثْقَىٰ﴾ (البقرة: 256). فالتوحيد إذن لا يقيّد الإنسان بل يحرره، وهو أساس الحرية الحقيقية."]
+ ]]
+];
+
+/* =========================================================
+   2) توليد الشرائح الديناميكية
+   ========================================================= */
+function el(html){var d=document.createElement("div");d.innerHTML=html.trim();return d.firstChild;}
+
+// الأهداف
+(function(){
+  var h="";
+  OBJECTIVES.forEach(function(t,i){h+='<div class="card anim"><span class="num">'+(i+1)+'</span><p>'+t+'</p></div>';});
+  document.getElementById("objectives").innerHTML=h;
+})();
+
+// العلاقة
+(function(){
+  var h="";
+  var ord=["أولًا","ثانيًا","ثالثًا","رابعًا","خامسًا","سادسًا"];
+  REL.forEach(function(r,i){
+    h+='<div class="card anim"><span class="tag">'+ord[i]+'</span><h3 style="margin-top:6px">'+r[0]+'</h3><p>'+r[1]+'</p>'+
+       '<button class="btn small ghost reveal-btn" data-show="💡 مثال" data-hide="إخفاء المثال">💡 مثال</button><div class="reveal">'+r[2]+'</div></div>';
+  });
+  document.getElementById("relCards").innerHTML=h;
+})();
+
+// مظاهر العبودية
+(function(){
+  var h="";
+  SLAV.forEach(function(s){
+    h+='<div class="card anim"><h3>'+s[0]+' '+s[1]+'</h3><p>'+s[2]+'</p><p style="color:var(--muted);font-size:.92rem">🔎 '+s[3]+'</p></div>';
+  });
+  document.getElementById("slavCards").innerHTML=h;
+})();
+
+// مواقف
+(function(){
+  var h="";
+  SITUATIONS.forEach(function(s){
+    h+='<div class="card anim" style="margin-bottom:16px"><h3>'+s.t+'</h3><p>📖 '+s.s+'</p><p><b>❓ السؤال:</b> '+s.q+'</p>'+
+       '<button class="btn small reveal-btn" data-show="الحل" data-hide="إخفاء الحل">الحل</button><div class="reveal">'+s.a+'</div></div>';
+  });
+  document.getElementById("situations").innerHTML=h;
+})();
+
+// التقويم
+(function(){
+  var h="",n=1;
+  ASSESS.forEach(function(g){
+    h+='<h3 style="color:var(--accent);margin:14px 0 8px">'+g[0]+'</h3>';
+    g[1].forEach(function(q){
+      h+='<div class="qa"><div class="q">'+n+'. '+q[0]+'</div><button class="btn small ghost reveal-btn" style="margin-top:8px" data-show="نموذج إجابة" data-hide="إخفاء الإجابة">نموذج إجابة</button><div class="reveal">'+q[1]+'</div></div>';
+      n++;
+    });
+  });
+  document.getElementById("assess").innerHTML=h;
+})();
+
+// المصطلحات
+(function(){
+  var box=document.getElementById("terms"),panel=document.getElementById("termPanel");
+  TERMS.forEach(function(t,i){
+    var b=document.createElement("button");b.className="term";b.textContent=t[0];
+    b.onclick=function(){
+      box.querySelectorAll(".term").forEach(function(x){x.classList.remove("active");});
+      b.classList.add("active");
+      panel.innerHTML='<h3>'+t[0]+'</h3><p>'+t[1]+'</p><p style="color:var(--muted)">'+t[2]+'</p>';
+    };
+    box.appendChild(b);
+  });
+})();
+
+// النصوص الشرعية
+(function(){
+  var anchor=document.getElementById("textsAnchor"),h="";
+  TEXTS.forEach(function(t,i){
+    var vocab="";t.vocab.forEach(function(v){vocab+='<tr><td>'+v[0]+'</td><td>'+v[1]+'</td></tr>';});
+    var qa="";t.qa.forEach(function(q,k){
+      qa+='<div class="qa"><div class="q">'+(k+1)+'. '+q[0]+'</div><button class="btn small ghost reveal-btn" style="margin-top:8px" data-show="إظهار الإجابة" data-hide="إخفاء الإجابة">إظهار الإجابة</button><div class="reveal">'+q[1]+'</div></div>';
+    });
+    h+='<section class="slide" data-axis="2"><div class="wrap">'+
+      '<h2 class="slide-title anim"><span class="ico">📖</span>النص '+(i+1)+' من '+TEXTS.length+': '+t.title+'</h2><div class="divider"></div>'+
+      '<div class="ayah-card anim"><div class="ayah">'+t.verse+'</div><div class="ref">'+t.ref+'</div></div>'+
+      '<div class="tabs"><button class="tab active" data-tab="0">🔍 الشرح والتحليل</button><button class="tab" data-tab="1">❓ أسئلة للفهم والتحليل</button></div>'+
+      '<div class="tabpane active">'+
+        '<div class="grid g2">'+
+          '<div class="card"><h3>📝 شرح المفردات</h3><table class="vocab">'+vocab+'</table></div>'+
+          '<div class="card"><h3>📌 المعنى الإجمالي</h3><p>'+t.meaning+'</p><div class="big-idea light" style="margin:10px 0 0;font-size:1rem"><b>الفكرة الأساسية:</b> '+t.idea+'</div></div>'+
+          '<div class="card"><h3>☝️ علاقته بالتوحيد</h3><p>'+t.tawhid+'</p></div>'+
+          '<div class="card"><h3>🕊️ علاقته بالحرية</h3><p>'+t.freedom+'</p></div>'+
+        '</div></div>'+
+      '<div class="tabpane"><div class="say">💬 <b>من منكم يستطيع أن يجيب؟</b> فكروا ثم اضغطوا لإظهار الجواب.</div>'+qa+'</div>'+
+    '</div></section>';
+  });
+  anchor.insertAdjacentHTML("beforebegin",h);
+  anchor.remove();
+})();
+
+// المخطط
+var flowEl=document.getElementById("flow"),flowShown=0;
+(function(){
+  var h="";
+  STEPS.forEach(function(s,i){
+    h+='<div class="flow-step'+(i===STEPS.length-1?' last':'')+'" data-i="'+i+'">'+s[0]+(s[1]?'<small>'+s[1]+'</small>':'')+'</div>';
+    if(i<STEPS.length-1)h+='<div class="flow-arrow" data-a="'+i+'">↓</div>';
+  });
+  flowEl.innerHTML=h;
+})();
+function flowUpdate(){
+  flowEl.querySelectorAll(".flow-step").forEach(function(s){s.classList.toggle("show",+s.dataset.i<flowShown);});
+  flowEl.querySelectorAll(".flow-arrow").forEach(function(a){a.classList.toggle("show",+a.dataset.a<flowShown-1);});
+}
+document.getElementById("flowNext").onclick=function(){if(flowShown<STEPS.length){flowShown++;flowUpdate();}};
+document.getElementById("flowAll").onclick=function(){flowShown=STEPS.length;flowUpdate();};
+document.getElementById("flowReset").onclick=function(){flowShown=0;flowUpdate();};
+flowShown=1;flowUpdate();
+
+// الخريطة الذهنية
+(function(){
+  var W=1100,H=700,cx=550,cy=350;
+  var branches=[
+    {t:"التوحيد",x:800,y:170,c:"#0f8a6d",leaves:[["عبادة الله وحده",990,170]]},
+    {t:"الحرية",x:300,y:170,c:"#c49a3a",leaves:[["اختيار مسؤول",110,170]]},
+    {t:"آثار التوحيد",x:800,y:520,c:"#2f7fb8",leaves:[["الكرامة",990,440],["التحرر",990,510],["المسؤولية",990,580],["الطمأنينة",990,650]]},
+    {t:"مظاهر العبودية",x:300,y:520,c:"#c0504d",leaves:[["الشهوة",110,440],["المال",110,510],["الشهرة",110,580],["ضغط الآخرين",110,650]]}
+  ];
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="خريطة ذهنية: التوحيد والحرية">';
+  branches.forEach(function(b){
+    s+='<path class="mm-line" d="M'+cx+' '+cy+' Q'+((cx+b.x)/2)+' '+((cy+b.y)/2+(b.y<cy?-30:30))+' '+b.x+' '+b.y+'" stroke="'+b.c+'"/>';
+    b.leaves.forEach(function(l){
+      s+='<path class="mm-line" d="M'+b.x+' '+b.y+' L'+l[1]+' '+l[2]+'" stroke="'+b.c+'" style="stroke-width:2.2;opacity:.8"/>';
+    });
+  });
+  branches.forEach(function(b){
+    b.leaves.forEach(function(l){
+      s+='<g class="mm-node"><rect x="'+(l[1]-78)+'" y="'+(l[2]-20)+'" width="156" height="40" rx="20" fill="var(--card)" stroke="'+b.c+'" stroke-width="2.5"/>'+
+         '<text x="'+l[1]+'" y="'+l[2]+'" font-size="17" fill="var(--text)" font-weight="600">'+l[0]+'</text></g>';
+    });
+  });
+  branches.forEach(function(b){
+    s+='<g class="mm-node"><rect x="'+(b.x-95)+'" y="'+(b.y-27)+'" width="190" height="54" rx="27" fill="'+b.c+'"/>'+
+       '<text x="'+b.x+'" y="'+b.y+'" font-size="21" fill="#fff" font-weight="800">'+b.t+'</text></g>';
+  });
+  s+='<g class="mm-node"><ellipse cx="'+cx+'" cy="'+cy+'" rx="125" ry="58" fill="var(--primary)" stroke="var(--accent)" stroke-width="4"/>'+
+     '<text x="'+cx+'" y="'+cy+'" font-size="27" fill="#fff" font-weight="800">التوحيد والحرية</text></g></svg>';
+  document.getElementById("mindmap").innerHTML=s;
+})();
+
+/* =========================================================
+   3) الاختبار التفاعلي
+   ========================================================= */
+(function(){
+  var box=document.getElementById("quizBox"),qi=0,score=0,order=[];
+  var good=["أحسنت! إجابة صحيحة 👏","ممتاز! واصل هكذا 🌟","بارك الله فيك، فهمك سليم ✅","رائع! أنت على الطريق الصحيح 💪"];
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function start(){qi=0;score=0;order=shuffle(QUIZ.map(function(_,i){return i;})).slice(0,10);render();}
+  function render(){
+    if(qi>=order.length)return end();
+    var Q=QUIZ[order[qi]];
+    var opts=shuffle(Q.o.map(function(t,i){return {t:t,ok:i===0};}));
+    var h='<div class="quiz-meta"><span>السؤال '+(qi+1)+' / '+order.length+'</span><span>النقاط: '+score+'</span></div>'+
+          '<div class="qbar"><i style="width:'+(qi/order.length*100)+'%"></i></div>'+
+          '<div class="qtext">'+Q.q+'</div><div id="opts"></div><div class="feedback" id="fb"></div>'+
+          '<div style="text-align:left;margin-top:10px"><button class="btn" id="qNext" style="display:none">'+(qi===order.length-1?'عرض النتيجة':'السؤال التالي')+' ←</button></div>';
+    box.innerHTML=h;
+    var oc=box.querySelector("#opts");
+    opts.forEach(function(o){
+      var b=document.createElement("button");b.className="opt";b.textContent=o.t;
+      b.onclick=function(){
+        oc.querySelectorAll(".opt").forEach(function(x,k){x.disabled=true;if(opts[k].ok)x.classList.add("right");});
+        var fb=box.querySelector("#fb");
+        if(o.ok){score++;b.classList.add("right");fb.className="feedback show good";fb.innerHTML="<b>"+good[Math.floor(Math.random()*good.length)]+"</b><br>"+Q.e;}
+        else{b.classList.add("wrong");fb.className="feedback show bad";fb.innerHTML="<b>إجابة غير صحيحة.</b> الإجابة الصحيحة مظللة بالأخضر.<br>"+Q.e;}
+        var nb=box.querySelector("#qNext");nb.style.display="inline-flex";nb.onclick=function(){qi++;render();};
+      };
+      oc.appendChild(b);
+    });
+  }
+  function end(){
+    var n=order.length,p=Math.round(score/n*100),m;
+    if(p>=80)m="ممتاز! لقد استوعبت الدرس جيدًا، بارك الله فيك 🌟";
+    else if(p>=50)m="جيد! راجع النقاط التي أخطأت فيها لتتقنها 👍";
+    else m="لا بأس! أعد قراءة الدرس والمحاولة، فالتكرار يثبت الفهم 💪";
+    box.innerHTML='<div class="qbar"><i style="width:100%"></i></div><div class="score-big">'+score+' / '+n+'</div>'+
+      '<p style="text-align:center;font-size:1.2rem;font-weight:700">'+m+'</p>'+
+      '<div style="text-align:center;margin-top:14px"><button class="btn" id="qAgain">🔁 إعادة الاختبار</button></div>';
+    box.querySelector("#qAgain").onclick=start;
+  }
+  start();
+})();
+
+/* =========================================================
+   4) التنقل والتحكم
+   ========================================================= */
+var slides=Array.prototype.slice.call(document.querySelectorAll(".slide")),cur=0;
+var chipsBox=document.getElementById("navChips"),chips=[];
+AXES.forEach(function(name,ai){
+  var first=slides.findIndex(function(s){return +s.dataset.axis===ai;});
+  if(first<0)return;
+  var b=document.createElement("button");b.className="chip";b.textContent=name;
+  b.onclick=function(){go(first);};b.dataset.axis=ai;
+  chipsBox.appendChild(b);chips.push(b);
+});
+function go(i){
+  if(i<0||i>=slides.length)return;
+  slides[cur].classList.remove("active");
+  cur=i;
+  slides[cur].classList.add("active");
+  slides[cur].scrollTop=0;
+  var ax=+slides[cur].dataset.axis;
+  chips.forEach(function(c){var on=+c.dataset.axis===ax;c.classList.toggle("active",on);if(on)c.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});});
+  document.getElementById("progressBar").style.width=((cur+1)/slides.length*100)+"%";
+  document.getElementById("counter").textContent="الشريحة "+(cur+1)+" من "+slides.length;
+  document.getElementById("prevBtn").disabled=cur===0;
+  document.getElementById("nextBtn").disabled=cur===slides.length-1;
+}
+document.getElementById("prevBtn").onclick=function(){go(cur-1);};
+document.getElementById("nextBtn").onclick=function(){go(cur+1);};
+document.addEventListener("keydown",function(e){
+  var t=e.target;if(t&&(t.isContentEditable||/INPUT|TEXTAREA/.test(t.tagName)))return;
+  // في الاتجاه RTL: السهم الأيسر = التالي، الأيمن = السابق
+  if(e.key==="ArrowLeft"||e.key==="PageDown"||(e.key===" "&&t.tagName!=="BUTTON")){e.preventDefault();go(cur+1);}
+  else if(e.key==="ArrowRight"||e.key==="PageUp"){e.preventDefault();go(cur-1);}
+  else if(e.key==="Home"){go(0);}
+  else if(e.key==="End"){go(slides.length-1);}
+});
+// السحب على الهاتف
+(function(){
+  var x0=null,y0=null,st=document.getElementById("stage");
+  st.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  st.addEventListener("touchend",function(e){
+    if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6){dx<0?go(cur+1):go(cur-1);}
+    x0=null;
+  },{passive:true});
+})();
+
+// إظهار الإجابات + التبويبات
+document.addEventListener("click",function(e){
+  var rb=e.target.closest(".reveal-btn");
+  if(rb){
+    var box=rb.nextElementSibling;
+    if(box&&box.classList.contains("reveal")){
+      var on=box.classList.toggle("show");
+      rb.textContent=on?rb.dataset.hide:rb.dataset.show;
+    }
+    return;
+  }
+  var tb=e.target.closest(".tab");
+  if(tb){
+    var sl=tb.closest(".slide"),idx=+tb.dataset.tab;
+    sl.querySelectorAll(".tab").forEach(function(t,i){t.classList.toggle("active",i===idx);});
+    sl.querySelectorAll(".tabpane").forEach(function(p,i){p.classList.toggle("active",i===idx);});
+  }
+});
+
+// الوضع الليلي/النهاري
+var themeBtn=document.getElementById("themeBtn");
+function setTheme(t){
+  document.documentElement.setAttribute("data-theme",t);
+  themeBtn.textContent=t==="dark"?"☀️":"🌙";
+  try{localStorage.setItem("tawhid-theme",t);}catch(e){}
+}
+(function(){var t="light";try{t=localStorage.getItem("tawhid-theme")||"light";}catch(e){}setTheme(t);})();
+themeBtn.onclick=function(){setTheme(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark");};
+
+// ملء الشاشة
+document.getElementById("fsBtn").onclick=function(){
+  if(!document.fullscreenElement){(document.documentElement.requestFullscreen||function(){}).call(document.documentElement);}
+  else{document.exitFullscreen();}
+};
+
+go(0);
+</script>
+</body>
+</html>
